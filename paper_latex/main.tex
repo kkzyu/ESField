@@ -820,15 +820,15 @@ The results are striking and physically revealing:
 
 \subsection{Kinematic Guidance Outperforms Naive Fixation by Eliminating Kinetic Strain}
 
-Table~\ref{tab:five_pocket} presents the primary results across 6
+Table~\ref{tab:six_pocket} presents the primary results across 6
 pharmacologically diverse PDBbind pockets.  For each pocket, we compare
 three conditions: DrugFlow baseline (unguided), ESField v7.1 hard-fix, and
 \ESField~\textsc{kin} (kinematic anchoring).
 
 \begin{table}[H]
   \centering
-  \caption{\textbf{Five-pocket comprehensive evaluation of kinematic anchor
-           guidance.}  DirectOcc: fraction of molecules with $\ge 1$
+  \caption{\textbf{Comprehensive evaluation of kinematic anchor guidance across 6 pockets.}
+           DirectOcc: fraction of molecules with $\ge 1$
            compatible atom within 2.5\,\AA{} of a HEW site (higher is
            better).  Vina: mean docking score in kcal/mol (more negative
            is better).  QED: drug-likeness (0--1).  POSU: Physical
@@ -837,7 +837,7 @@ three conditions: DrugFlow baseline (unguided), ESField v7.1 hard-fix, and
            stability).  For each pocket, best value in \textbf{bold}.
            Wilcoxon signed-rank test across all 6 pockets comparing Vina
            (Kinematic) vs.\ Vina (Hard-Fix): $\bm{p = 4 \times 10^{-6}}$.}
-  \label{tab:five_pocket}
+  \label{tab:six_pocket}
   \small
   \begin{tabular}{l l c c c c c}
     \toprule
@@ -918,7 +918,7 @@ Hard-Fix, Kinematic), generating 50 molecules per condition for 3mfw and
 
 \textbf{TargetDiff is less water-blind than DrugFlow.}  The unguided baseline
 achieves 82--100\% DirectOcc on TargetDiff, compared to 0\% on DrugFlow
-(Table~\ref{tab:five_pocket}).  This likely reflects TargetDiff's
+(Table~\ref{tab:six_pocket}).  This likely reflects TargetDiff's
 SE(3)-equivariant architecture and training data distribution: without
 explicit water awareness, the model distributes atom positions broadly
 across the pocket volume, resulting in incidental proximity to HEW sites.
