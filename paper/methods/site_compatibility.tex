@@ -1,0 +1,48 @@
+% Site Compatibility Energy and Matrix
+\subsection{Site-Compatibility Energy}
+
+The site-compatibility energy is a fully differentiable, rule-based
+potential that guides atoms toward candidate HEW sites:
+
+\begin{equation}\label{eq:site_energy}
+E_{\text{site}}(\mathbf{x}_t) = -\sum_{j}^{\text{sites}} \sum_{i}^{\text{atoms}}
+M(\tau_i, \varepsilon_j) \cdot \exp\left(-\frac{d_{ij}^2}{2\sigma^2}\right)
+\end{equation}
+
+where $d_{ij} = \|\mathbf{x}_i - \mathbf{c}_j\|_2$ is the Euclidean distance
+between atom $i$ and site center $j$, $\sigma=3.0$\,\AA\ is the Gaussian kernel
+width, and $M(\tau_i, \varepsilon_j) \in [-1, +1]$ is the compatibility
+score from the heuristic matrix below.
+
+\textbf{Compatibility Matrix.}
+Each HEW site is classified into one of four environments based on its
+local protein context (H-bond count, hydrophobic contacts, nearest protein
+atom distance). The compatibility of 11 atom types with each environment
+is encoded as a fixed matrix:
+
+\begin{table}[h]
+\centering
+\caption{Heuristic atom-site compatibility matrix $M(\tau, \varepsilon)$.}
+\label{tab:compat_matrix}
+\begin{tabular}{lrrrr}
+\toprule
+Atom Type & Hydrophobic & Polar Unsatisfied & Mixed & Buried \\
+\midrule
+C$_{\text{sp}^3}$ & +1.0 & -0.5 & +0.5 & +0.3 \\
+C$_{\text{aromatic}}$ & +1.0 & -0.5 & +0.5 & -0.5 \\
+N$_{\text{donor}}$ & -0.5 & +1.0 & +0.5 & -1.0 \\
+N$_{\text{acceptor}}$ & -0.5 & +1.0 & +0.5 & -1.0 \\
+O$_{\text{acceptor}}$ & -0.5 & +1.0 & +0.5 & -1.0 \\
+S & +0.3 & +0.3 & +0.5 & -0.3 \\
+P & -0.3 & -0.3 & +0.1 & -0.5 \\
+Halogen & +1.0 & -0.5 & +0.5 & +0.5 \\
+Charged & -1.0 & -1.0 & -0.5 & -1.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Positive scores ($>0$) attract atoms; negative scores repel them.
+The matrix was designed based on chemical intuition:
+hydrophobic sites prefer apolar atoms (C, halogen), while polar-unsatisfied
+sites require H-bond donors/acceptors (O, N). Mixed sites accept both
+types at moderate scores, and buried sites penalize polar intrusion.

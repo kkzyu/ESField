@@ -1,0 +1,120 @@
+# =============================================================================
+# v7.1a — Flexible Anchor Annealing Configuration
+# =============================================================================
+#
+# Extends v7.1 with an annealing anchor fixation mode that transitions from
+# hard coordinate overwrite (early steps) to harmonic restraint with linearly
+# decaying force constant (late steps).  This allows anchor atoms to relax
+# toward globally optimal positions once the molecular scaffold is established.
+#
+# Motivation (from v7.1 final report):
+#   Hard-fix guarantees HEW occupancy but prevents global conformational
+#   optimization.  In 3mfw, occupied molecules showed *worse* Vina scores
+#   (p=0.067, δ=+0.47), suggesting rigid anchors may strain overall geometry.
+#
+# Usage:
+#   PYTHONPATH=src python scripts/run_annealing_experiment.py \
+#     --config configs/v7_annealing.yaml
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Guidance parameters (shared across both phases)
+# ---------------------------------------------------------------------------
+guidance:
+  lambda_early: 0.5
+  lambda_late: 0.1
+  sigma_distance: 3.0
+  compatibility: "rule_based"
+
+# ---------------------------------------------------------------------------
+# Kinetic Trajectory Shaping (KTS)
+# ---------------------------------------------------------------------------
+kts:
+  alpha0: 0.01
+  beta0: 0.01
+  tau_split: 0.6
+  k: 3.0
+
+# ---------------------------------------------------------------------------
+# Phase 1: Occupy — identical to v7.1
+# ---------------------------------------------------------------------------
+phase1:
+  n_init_atoms: 4
+  max_steps: 100
+  success_distance: 2.5
+  min_compatibility: 0.3
+  attempts: 3
+  anchor_selection: "best_per_site"
+  guidance_start: 0.05
+  guidance_end: 0.95
+  grad_clip: 0.5
+  lambda_early: 5.0
+  kts_alpha0: 0.01
+  kts_beta0: 0.01
+  sigma_distance: 3.0
+
+# ---------------------------------------------------------------------------
+# Phase 2: Connect — NEW: annealing anchor fixation mode
+# ---------------------------------------------------------------------------
+phase2:
+  # ── Anchor fixation mode ──
+  # "hard": original v7.1 behavior (hard-overwrite all steps)
+  # "annealing": v7.1a — hard-fix for fix_fraction of steps, then harmonic decay
+  anchor_fix_mode: "annealing"
+
+  # ── Annealing parameters (only used when anchor_fix_mode == "annealing") ──
+  annealing:
+    # Fraction of total steps to hard-fix (0–1)
+    # 0.7 = first 70% steps are hard-fix, last 30% are harmonic decay
+    fix_fraction: 0.7
+
+    # Harmonic force constant initial value (kcal/mol/Å² equivalent)
+    # Higher → stronger restraint at the start of the annealing phase
+    restraint_start: 10.0
+
+    # Harmonic force constant final value
+    # 0.0 → anchors are completely free at the end
+    restraint_end: 0.0
+
+    # Decay schedule: "linear" or "exponential"
+    # "linear": k(t) = k_start + (k_end - k_start) * progress
+    # "exponential": k(t) = k_start * (k_end/k_start)^progress
+    ramp: "linear"
+
+  # ── Shared Phase 2 parameters ──
+  max_total_steps: 200
+  lambda_late: 0.1
+  guidance_start: 0.1
+  guidance_end: 0.90
+  grad_clip: 0.3
+  restraint_force: 10.0
+
+  # Type bias (cross-entropy penalty on anchor type drift)
+  type_bias_strength: 0.3
+
+  # KTS (milder than Phase 1)
+  kts_alpha0: 0.005
+  kts_beta0: 0.01
+
+# ---------------------------------------------------------------------------
+# Post-processing
+# ---------------------------------------------------------------------------
+postprocess:
+  minimize: true
+  force_field: "MMFF94"
+
+# ---------------------------------------------------------------------------
+# Output & Logging
+# ---------------------------------------------------------------------------
+output:
+  save_phase1_fragments: true
+  save_anchor_details: true
+  verbose: true
+
+# ---------------------------------------------------------------------------
+# Model paths
+# ---------------------------------------------------------------------------
+model:
+  drugflow_ckpt: "/root/autodl-tmp/checkpoints/DrugFlow/drugflow.ckpt"
+  drugflow_dir: "/root/baselines/DrugFlow/code/DrugFlow-main"
+  device: "cuda:0"

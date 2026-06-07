@@ -1,0 +1,205 @@
+\begin{thebibliography}{10}
+
+\bibitem{dunitz1994}
+Jack~D. Dunitz.
+\newblock The entropic cost of bound water in crystals and biomolecules.
+\newblock {\em Science}, 264(5159):670, 1994.
+
+\bibitem{abel2008}
+Robert Abel, Tom Young, Ramy Farid, Bruce~J. Berne, and Richard~A. Friesner.
+\newblock Role of the active-site solvent in the thermodynamics of factor {Xa}
+  ligand binding.
+\newblock {\em Journal of the American Chemical Society}, 130(9):2817--2831,
+  2008.
+
+\bibitem{michel2009}
+Julien Michel, Julian Tirado-Rives, and William~L. Jorgensen.
+\newblock Energetics of displacing water molecules from protein binding sites:
+  {C}onsequences for ligand optimization.
+\newblock {\em Journal of the American Chemical Society}, 131(42):15403--15411,
+  2009.
+
+\bibitem{ladbury1996}
+John~E. Ladbury.
+\newblock Just add water! {T}he effect of water on the specificity of
+  protein--ligand binding sites and its potential application to drug design.
+\newblock {\em Chemistry \& Biology}, 3(12):973--980, 1996.
+
+\bibitem{spyrakis2017}
+Francesca Spyrakis, Mostafa~H. Ahmed, Alexander~S. Bayden, Pietro Cozzini,
+  Andrea Mozzarelli, and Glen~E. Kellogg.
+\newblock The roles of water in the protein matrix: {A} largely untapped
+  resource for drug discovery.
+\newblock {\em Journal of Medicinal Chemistry}, 60(16):6781--6827, 2017.
+
+\bibitem{nguyen2012gist}
+Crystal~N. Nguyen, Tom~K. Young, and Michael~K. Gilson.
+\newblock Grid inhomogeneous solvation theory: {H}ydration structure and
+  thermodynamics of the miniature receptor cucurbit[7]uril.
+\newblock {\em Journal of Chemical Physics}, 137(4):044101, 2012.
+
+\bibitem{ross2012gcmc}
+Gregory~A. Ross, Garrett~M. Morris, and Philip~C. Biggin.
+\newblock Rapid and accurate prediction and scoring of water molecules in
+  protein binding sites.
+\newblock {\em PLoS ONE}, 7(3):e32036, 2012.
+
+\bibitem{luchko2010rism}
+Tyler Luchko, Sergey Gusarov, Daniel~R. Roe, Carlos Simmerling, David~A. Case,
+  Jack Tuszynski, and Andriy Kovalenko.
+\newblock Three-dimensional molecular theory of solvation coupled with
+  molecular dynamics in {Amber}.
+\newblock {\em Journal of Chemical Theory and Computation}, 6(3):607--624,
+  2010.
+
+\bibitem{guan2023targetdiff}
+Jiaqi Guan, Wen Zhou, Jian Peng, and Jianzhu Ma.
+\newblock 3{D} equivariant diffusion for target-aware molecule generation and
+  affinity prediction.
+\newblock In {\em International Conference on Learning Representations (ICLR)},
+  2023.
+
+\bibitem{schneuing2024diffsbdd}
+Arne Schneuing, Yuanqi Du, Charles Harris, Arian Jamasb, Igor Iashchishyn,
+  Vladimir Borislavov, Hannes St{\"a}rk, Joseph Lam, and Bruno Correia.
+\newblock Structure-based drug design with equivariant diffusion models.
+\newblock {\em Nature Machine Intelligence}, 6:1257--1268, 2024.
+
+\bibitem{guan2023decompdiff}
+Jiaqi Guan, Xiang Zhou, Jian Peng, and Jianzhu Ma.
+\newblock {DecompDiff}: Diffusion models with decomposed protein--ligand priors
+  for structure-based drug design.
+\newblock In {\em International Conference on Machine Learning (ICML)}, 2023.
+
+\bibitem{drugflow2024}
+{DrugFlow Contributors}.
+\newblock {DrugFlow}: Structure-based drug design with flow matching.
+\newblock {\em arXiv preprint arXiv:2407.08870}, 2024.
+
+\bibitem{zhang2024flag}
+Zaixi Zhang, Qi~Liu, Zhaocheng Wang, and Yang Li.
+\newblock Full-atom ligand generation with {SE(3)}-equivariant flow matching.
+\newblock {\em arXiv preprint arXiv:2407.08870}, 2024.
+
+\bibitem{berman2000pdb}
+Helen~M. Berman, John Westbrook, Zukang Feng, Gary Gilliland, T.~N. Bhat, Helge
+  Weissig, Ilya~N. Shindyalov, and Philip~E. Bourne.
+\newblock The {Protein Data Bank}.
+\newblock {\em Nucleic Acids Research}, 28(1):235--242, 2000.
+
+\bibitem{esfield2026}
+{ESField Contributors}.
+\newblock {ESField}: Physical opportunity site utilization as a missing
+  dimension in structure-based 3{D} molecular generation.
+\newblock {\em Technical Report}, 2026.
+
+\bibitem{esfield2026v6}
+{ESField Contributors}.
+\newblock {ESField v6-D.2}: Analytic field-based guidance for {HEW} site
+  displacement---a {NO-GO} diagnosis.
+\newblock {\em Technical Report}, 2026.
+
+\bibitem{griesbacher2026ebmol}
+Christoph Griesbacher, Andreas Habring, Lukas Bogensperger, and Thomas Pock.
+\newblock Generating physically consistent molecules with energy-based models.
+\newblock {\em arXiv preprint arXiv:2605.18381}, 2026.
+
+\bibitem{li2026kpe}
+Zhan Li, Han Hu, Shao~Heng Lim, Xiaodong Li, Fei Gao, Enmao Diao, Ziming Ding,
+  Michalis Vazirgiannis, and Henrik Bostr{\"o}m.
+\newblock A kinetic-energy perspective of flow matching.
+\newblock {\em arXiv preprint arXiv:2602.07928}, 2026.
+
+\bibitem{jin2018jtvae}
+Wengong Jin, Regina Barzilay, and Tommi Jaakkola.
+\newblock Junction tree variational autoencoder for molecular graph generation.
+\newblock {\em International Conference on Machine Learning (ICML)}, 2018.
+
+\bibitem{dhariwal2021classifier}
+Prafulla Dhariwal and Alex Nichol.
+\newblock Diffusion models beat {GANs} on image synthesis.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)},
+  2021.
+
+\bibitem{ho2022cfg}
+Jonathan Ho and Tim Salimans.
+\newblock Classifier-free diffusion guidance.
+\newblock In {\em NeurIPS Workshop on Deep Generative Models and Downstream
+  Applications}, 2021.
+
+\bibitem{bansal2023universal}
+Arpit Bansal, Hong-Min Chu, Avi Schwarzschild, Soumyadip Sengupta, Micah
+  Goldblum, Jonas Geiping, and Tom Goldstein.
+\newblock Universal guidance for diffusion models.
+\newblock In {\em ICLR Workshop on Generative Modeling}, 2023.
+
+\bibitem{lai2025force}
+Huafeng Lai, Tianhua Wang, Hanane Sirelkhatim, James Eaton, Hua Huang, Brad
+  Rees, Ola Engkvist, Jon~Paul Janet, Xiaoting Wang, and Alessandro Tibo.
+\newblock Improving protein--ligand complex generation with force field
+  guidance.
+\newblock In {\em NeurIPS Workshop on SimBioChem}, 2025.
+
+\bibitem{lam2026metadiffusion}
+H.~Y.~Isaac Lam, Samuel~P. Ojeda, Michaela Brezinova, Johannes Hanke, X.~E.
+  Ong, Yuguang Mu, and Michele Vendruscolo.
+\newblock Metadiffusion: Inference-time meta-energy biasing of biomolecular
+  diffusion models.
+\newblock {\em bioRxiv}, 2026.
+
+\bibitem{wang2015water}
+Lingle Wang, Bruce~J. Berne, and Richard~A. Friesner.
+\newblock Ligand binding to protein-binding pockets with wet and dry regions.
+\newblock {\em Proceedings of the National Academy of Sciences USA},
+  108(4):1326--1330, 2011.
+
+\bibitem{halgren1996mmff94}
+Thomas~A. Halgren.
+\newblock {Merck Molecular Force Field}. {I}. {B}asis, form, scope,
+  parameterization, and performance of {MMFF94}.
+\newblock {\em Journal of Computational Chemistry}, 17(5-6):490--519, 1996.
+
+\bibitem{rappe1992uff}
+Anthony~K. Rappe, Carla~J. Casewit, K.~S. Colwell, William~A. Goddard, and
+  W.~M. Skiff.
+\newblock {UFF}, a full periodic table force field for molecular mechanics and
+  molecular dynamics simulations.
+\newblock {\em Journal of the American Chemical Society}, 114(25):10024--10035,
+  1992.
+
+\bibitem{trott2010vina}
+Oleg Trott and Arthur~J. Olson.
+\newblock {AutoDock Vina}: Improving the speed and accuracy of docking with a
+  new scoring function, efficient optimization, and multithreading.
+\newblock {\em Journal of Computational Chemistry}, 31(2):455--461, 2010.
+
+\bibitem{bickerton2012qed}
+G.~Richard Bickerton, Gaia~V. Paolini, J{\'e}r{\'e}my Besnard, Sorel Muresan,
+  and Andrew~L. Hopkins.
+\newblock Quantifying the chemical beauty of drugs.
+\newblock {\em Nature Chemistry}, 4:90--98, 2012.
+
+\bibitem{friedman2023vendi}
+Dan Friedman and Adji~Bousso Dieng.
+\newblock The {Vendi Score}: {A} diversity evaluation metric for machine
+  learning.
+\newblock {\em arXiv preprint arXiv:2210.02410}, 2023.
+
+\bibitem{wilcoxon1945}
+Frank Wilcoxon.
+\newblock Individual comparisons by ranking methods.
+\newblock {\em Biometrics Bulletin}, 1(6):80--83, 1945.
+
+\bibitem{cliff1993}
+Norman Cliff.
+\newblock Dominance statistics: {O}rdinal analyses to answer ordinal questions.
+\newblock {\em Psychological Bulletin}, 114(3):494--509, 1993.
+
+\bibitem{romano2006}
+Jeanine Romano, Jeffrey~D. Kromrey, Jesse Coraggio, and Jeff Skowronek.
+\newblock Appropriate statistics for ordinal level data: {S}hould we really be
+  using $t$-test and {C}ohen's $d$ for evaluating group differences?
+\newblock In {\em Annual Meeting of the Florida Association of Institutional
+  Research}, 2006.
+
+\end{thebibliography}

@@ -1,0 +1,131 @@
+# =============================================================================
+# v7 — Hierarchical Latent Guidance with Two-Stage Topology Control
+# =============================================================================
+#
+# This configuration drives the two-stage generation pipeline:
+#   Phase 1 (Occupy):  grow a small fragment into candidate HEW sites
+#   Phase 2 (Connect): build a full drug-like molecule around the anchors
+#
+# Key references:
+#   - Metadiffusion (inference-time meta-energy biasing)
+#   - Lai et al. (force field guidance on latent)
+#   - EBMol (zero-shot conditional generation by fixing atoms)
+#   - Kinetic Path Energy (KPE) + Kinetic Trajectory Shaping (KTS)
+#
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Guidance parameters (shared across both phases)
+# ---------------------------------------------------------------------------
+guidance:
+  # Phase 1: strong guidance for site occupation
+  lambda_early: 0.5
+  # Phase 2: weaker guidance (don't over-constrain full molecule growth)
+  lambda_late: 0.1
+  # Gaussian kernel width for site-compatibility distance weighting
+  sigma_distance: 3.0
+  # Compatibility matrix version
+  compatibility: "rule_based"  # "rule_based" | (future: "learned")
+
+# ---------------------------------------------------------------------------
+# Kinetic Trajectory Shaping (KTS)
+# ---------------------------------------------------------------------------
+kts:
+  # Early-stage boost: η(t=0) = 1 + alpha0
+  # Increases exploration during the noisy/chaotic regime
+  alpha0: 0.01
+  # Late-stage damping: exponential suppression after tau_split
+  beta0: 0.01
+  # Transition point (fraction of total time, 0=noise, 1=data)
+  # Topology decisions are largely made before this point
+  tau_split: 0.6
+  # Exponential damping stiffness (higher = sharper transition)
+  k: 3.0
+
+# ---------------------------------------------------------------------------
+# Phase 1: Occupy — place a small fragment at candidate HEW sites
+# ---------------------------------------------------------------------------
+phase1:
+  # Number of atoms in the initial small fragment
+  n_init_atoms: 4
+  # Maximum ODE integration steps for Phase 1
+  max_steps: 100
+  # Distance threshold for "occupancy" (Å)
+  success_distance: 2.5
+  # Minimum compatibility score for successful occupation
+  min_compatibility: 0.5
+  # Number of retry attempts if no atom occupies a site
+  attempts: 3
+  # Strategy for selecting anchor atoms from Phase 1 output
+  # Options: "best_per_site" | "all_compatible" | "nearest_compatible"
+  anchor_selection: "best_per_site"
+  # Guidance schedule: active window (fraction of trajectory)
+  guidance_start: 0.05
+  guidance_end: 0.95
+  # Per-atom gradient clipping
+  grad_clip: 0.5
+
+# ---------------------------------------------------------------------------
+# Phase 2: Connect — grow a full molecule around anchor atoms
+# ---------------------------------------------------------------------------
+phase2:
+  # ── Anchor fixation mode ──
+  # "hard": v7.1 default — hard-overwrite coordinates every step
+  # "annealing": v7.1a — hard-fix → harmonic decay
+  # "soft": harmonic restraint only
+  # "kinematic": ★ SV-Flow fusion — CoM-level site guidance with zero strain
+  anchor_fix_mode: "hard"
+
+  # Whether to hard-fix anchor atom positions (overwrite each step)
+  fix_atoms: true
+  # Harmonic restraint force constant (kcal/mol/Å² equivalent)
+  # Higher = tighter restraint on anchor atoms
+  restraint_force: 10.0
+  # Maximum total ODE integration steps for Phase 2
+  max_total_steps: 200
+  # Guidance schedule for Phase 2
+  guidance_start: 0.1
+  guidance_end: 0.90
+  # Per-atom gradient clipping (lower than Phase 1)
+  grad_clip: 0.3
+
+  # ── Annealing parameters ──
+  annealing_fix_fraction: 0.7
+  annealing_restraint_start: 10.0
+  annealing_restraint_end: 0.0
+  annealing_ramp: "linear"
+
+  # ── Kinematic parameters (★ SV-Flow fusion) ──
+  kinematic_lambda_max: 0.5       # guidance strength (0.1–2.0)
+  kinematic_profile: "quadratic"  # λ(t) decay: quadratic|constant|late_onset|linear
+  kinematic_t_on: 0.5             # onset for "late_onset" profile
+  kinematic_grad_clip: 0.5        # max per-step CoM correction (Å)
+  kinematic_track_kpe: true       # collect KPE diagnostics
+
+# ---------------------------------------------------------------------------
+# Post-processing
+# ---------------------------------------------------------------------------
+postprocess:
+  # Whether to run force-field energy minimization on final molecules
+  minimize: true
+  # Force field for minimization
+  force_field: "MMFF94"  # "MMFF94" | "UFF" | "GAFF"
+
+# ---------------------------------------------------------------------------
+# Output & Logging
+# ---------------------------------------------------------------------------
+output:
+  # Save intermediate Phase 1 fragments
+  save_phase1_fragments: true
+  # Save anchor atom details as JSON
+  save_anchor_details: true
+  # Verbose logging during generation
+  verbose: true
+
+# ---------------------------------------------------------------------------
+# Model paths (overridden by CLI arguments)
+# ---------------------------------------------------------------------------
+model:
+  drugflow_ckpt: "/root/autodl-tmp/checkpoints/DrugFlow/drugflow.ckpt"
+  drugflow_dir: "/root/baselines/DrugFlow/code/DrugFlow-main"
+  device: "cuda:0"

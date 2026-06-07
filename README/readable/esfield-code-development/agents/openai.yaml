@@ -1,0 +1,4 @@
+interface:
+  display_name: "ESField 代码开发"
+  short_description: "让 ESField 编码、测试、运行和交接保持可维护。"
+  default_prompt: "在实现或修改 ESField 代码时使用此技能，并用中文维护说明文档。"

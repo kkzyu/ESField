@@ -1,0 +1,32 @@
+% Docking Protocol
+\subsection{Docking Protocol for Energy Trend Analysis}
+
+To assess whether molecules occupying candidate HEW sites show improved
+binding energetics, we performed the following docking protocol:
+
+\textbf{Step~1: MMFF94 Minimization.}
+Each generated molecule was pre-minimized using the MMFF94 force field
+(RDKit implementation) with 200 iterations and a force tolerance of
+0.01~kcal/mol/\AA. Molecules failing MMFF94 parameterization were
+minimized with UFF as a fallback.
+
+\textbf{Step~2: Full Conformational Docking.}
+Minimized molecules were converted to PDBQT format (OpenBabel, Gasteiger
+charges) and docked into their respective protein pockets using AutoDock
+Vina~1.2.3 with exhaustiveness~$=8$, generating up to 9 binding modes.
+The docking box was centered on the pocket centroid with dimensions
+$22$--$35$\,\AA\ per side (covering the pocket residues plus 8--10\,\AA\
+padding).
+
+\textbf{Step~3: Statistical Comparison.}
+Molecules were grouped by whether they occupied at least one candidate HEW
+site (compatible atom within 2.5\,\AA). The lowest Vina score for each
+molecule was recorded. Group differences were assessed via the
+Mann-Whitney $U$ test (two-sided) with Cliff's $\delta$ as the
+effect size measure.
+
+\textbf{Limitations.}
+This protocol evaluates the \textit{generated} binding pose, not the
+globally optimal pose after exhaustive conformational search.
+Vina scores should be interpreted as estimates of relative binding
+affinity within each pocket, not as absolute free energies.

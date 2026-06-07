@@ -1,0 +1,15 @@
+[project]
+name = "esfield"
+version = "0.1.0"
+description = "Energy-site-guided 3D molecular generation MVP utilities."
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+chem = ["rdkit"]
+torch = ["torch"]
+viz = ["matplotlib"]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,96 @@
+# =============================================================================
+# v7.1 Actionable Pocket Configuration — Statistical Validation
+# =============================================================================
+#
+# Optimized for actionable pockets (2gni, 3mfw, 6o4x) where baseline
+# DirectOcc = 0.  Uses hard coordinate fix + type bias for anchor
+# preservation, and AnchorTypeSelector for intelligent atom type choice.
+#
+# Reference v6-D.2 baseline: DirectOcc = 0/60 (0%) on all three pockets.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Phase 1: Occupy — place anchors at HEW sites
+# ---------------------------------------------------------------------------
+phase1:
+  lambda: 5.0                 # Strong guidance for site occupation
+  steps: 100                  # ODE integration steps
+  n_atoms: 4                  # Fragment size
+  attempts: 3                 # Max retry attempts
+  per_attempt: 5              # Fragments per attempt
+  success_distance: 2.5       # Occupancy threshold (Å)
+  min_compatibility: -0.5     # Accept any atom near site (baseline=0%)
+
+  # Anchor type selection
+  anchor_type_strategy: "suggested"   # "suggested" | "random"
+  max_attempts_per_type: 2            # Attempts before switching to next type
+
+  # Anchor quality filter
+  anchor_quality:
+    max_distance: 2.5         # Max distance to HEW site (Å)
+    min_compatibility: -0.5   # Min compatibility score
+
+# ---------------------------------------------------------------------------
+# Phase 2: Connect — grow full molecule with hard anchor fix
+# ---------------------------------------------------------------------------
+phase2:
+  mode: "drugflow"            # "drugflow" | "fragment_docking" (v7.2 reserved)
+  hard_fix: true              # Hard coordinate overwrite each ODE step
+  fix_coords: true            # Fix anchor coordinates
+  fix_types: false            # DrugFlow type dims differ from ESField (14 vs 11)
+
+  # Type preservation (via gradient bias, not hard overwrite)
+  type_bias_strength: 0.5     # Cross-entropy penalty for type changes (0=off)
+
+  # Guidance
+  lambda: 0.1                 # Weak site guidance (don't over-constrain)
+  steps: 100                  # ODE integration steps
+  guidance_start: 0.1         # Start guidance at 10% of trajectory
+  guidance_end: 0.90          # End at 90%
+  grad_clip: 0.3
+
+# ---------------------------------------------------------------------------
+# KTS (Kinetic Trajectory Shaping)
+# ---------------------------------------------------------------------------
+kts:
+  alpha0: 0.01                # Early boost: η(0) = 1.01
+  beta0: 0.01                 # Late damping
+  tau_split: 0.6              # Transition point
+  k: 3.0                      # Exponential stiffness
+
+# ---------------------------------------------------------------------------
+# Evaluation
+# ---------------------------------------------------------------------------
+evaluation:
+  n_samples: 50               # Molecules per pocket
+  statistical_test: "binomial"  # One-sided binomial vs baseline p=0
+
+# ---------------------------------------------------------------------------
+# Pockets
+# ---------------------------------------------------------------------------
+pockets:
+  - 2gni                      # Baseline DirectOcc: 0/60 (0%)
+  - 3mfw                      # Baseline DirectOcc: 0/20 (0%)
+  - 6o4x                      # Baseline DirectOcc: 0/51 (0%)
+
+# ---------------------------------------------------------------------------
+# v7.2 Fragment Docking (reserved, NOT implemented)
+# ---------------------------------------------------------------------------
+# If phase2.mode == "fragment_docking":
+#   - Phase 1: unchanged
+#   - Phase 2: use fragment library + Vina docking instead of DrugFlow
+#   - fragment_library: "ZINC_fragments" | path
+#   - docking_engine: "vina"
+#   - max_linker_length: 5 bonds
+#   - post_minimize: "MMFF94"
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Output
+# ---------------------------------------------------------------------------
+output:
+  save_anchors: true
+  save_molecules_sdf: true
+  save_metrics_json: true
+  save_summary_csv: true
+  verbose: true

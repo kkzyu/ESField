@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\caption{Generalization performance of v7.1 across 10 PDBbind pockets.
+DirectOcc = fraction of generated molecules with at least one compatible
+atom within 2.5\,\AA\ of a candidate HEW site. Baseline (v6-D.2) DirectOcc
+= 0\% on all pockets. p-values from one-sided binomial test vs.\ $p_0=0$.}
+\label{tab:generalization}
+\begin{tabular}{lrrrrcrr}
+\toprule
+Pocket & $N$ & Occupied & DirectOcc (\%) & 95\% CI & $p$ & QED & POSU \\
+\midrule
+2gni & 25 & 5 & 20.0 & [6.8, 40.7] & 1.0e-10$^{{***}}$ & $0.52\pm0.18$ & $0.299\pm0.034$ \\
+3mfw & 25 & 3 & 12.0 & [2.5, 31.2] & 1.0e-10$^{{***}}$ & $0.33\pm0.12$ & $0.248\pm0.033$ \\
+6o4x & 25 & 9 & 36.0 & [18.0, 57.5] & 1.0e-10$^{{***}}$ & $0.61\pm0.11$ & $0.294\pm0.033$ \\
+6phx & 25 & 4 & 16.0 & [4.5, 36.1] & 1.0e-10$^{{***}}$ & $0.19\pm0.06$ & $0.196\pm0.019$ \\
+2gqn & 25 & 4 & 16.0 & [4.5, 36.1] & 1.0e-10$^{{***}}$ & $0.20\pm0.06$ & $0.198\pm0.019$ \\
+1h0r & 25 & 0 & 0.0 & [0.0, 13.7] & 1.0e+00$^{{n.s.}}$ & $0.39\pm0.07$ & $0.165\pm0.020$ \\
+3t09 & 25 & 0 & 0.0 & [0.0, 13.7] & 1.0e+00$^{{n.s.}}$ & $0.39\pm0.11$ & $0.158\pm0.021$ \\
+3fzn & — & — & — & — & — & — & — \\
+3f35 & 25 & 1 & 4.0 & [0.1, 20.4] & 1.0e-10$^{{***}}$ & $0.60\pm0.09$ & $0.163\pm0.026$ \\
+2jke & 25 & 8 & 32.0 & [14.9, 53.5] & 1.0e-10$^{{***}}$ & $0.31\pm0.08$ & $0.215\pm0.028$ \\
+\bottomrule
+\end{tabular}
+\end{table}

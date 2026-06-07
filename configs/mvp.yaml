@@ -1,0 +1,54 @@
+paths:
+  data_root: ${ESFIELD_DATA_DIR:-data}
+  run_root: ${ESFIELD_RUN_DIR:-experiments}
+  checkpoint_root: ${ESFIELD_CHECKPOINT_DIR:-checkpoints}
+
+data:
+  dataset: crossdocked_subset
+  pocket_radius: 10.0
+  max_sites_per_pocket: 20
+  split: protein_family
+
+site_detection:
+  use_fpocket: true
+  use_watsite: false
+  use_crystal_water: true
+  high_energy_water_threshold: 1.5
+  stable_water_threshold: -1.0
+  merge_distance: 1.0
+  min_protein_distance: 1.6
+
+potential_model:
+  atom_embed_dim: 32
+  site_embed_dim: 32
+  hidden_dim: 256
+  num_layers: 4
+  cutoff: 6.0
+  energy_clip: 5.0
+  loss: margin
+  margin_pos: -1.0
+  margin_neg: 1.0
+
+training:
+  batch_size: 1024
+  lr: 1.0e-4
+  epochs: 100
+  weight_decay: 1.0e-5
+  negative_ratio: 3
+  hard_negative_ratio: 0.4
+  grad_penalty_weight: 1.0e-3
+  seed: 20260511
+
+guidance:
+  lambda_max: 0.1
+  lambda_schedule: sigmoid
+  guidance_start: 0.35
+  guidance_end: 0.90
+  grad_clip: 1.0
+  guide_coordinates_only: true
+
+evaluation:
+  docking: vina
+  num_samples_per_pocket: 100
+  run_posebusters: true
+  report_site_metrics: true

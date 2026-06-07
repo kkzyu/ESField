@@ -1,0 +1,44 @@
+% Two-Stage Hierarchical Latent Guidance — Method Overview
+\subsection{Two-Stage Generation with Hierarchical Latent Guidance}
+
+Our method, v7.1, decomposes structure-based molecular generation into two
+sequential stages that explicitly address the topology-level control required
+for candidate HEW site utilization.
+
+\textbf{Phase~1: Occupy.}
+A small fragment ($n=4$ atoms) is generated under strong site-compatibility
+guidance (Eq.~\ref{eq:site_energy}) with $\lambda=5.0$.
+The guidance energy $E_{\text{site}}(\mathbf{x}_t)$ is differentiable with
+respect to atom coordinates $\mathbf{x}_t$, allowing gradient-based biasing
+of the flow-matching velocity field:
+\begin{equation}
+\mathbf{v}_{\text{guided}} = \mathbf{v}_\theta(\mathbf{x}_t, t) -
+\lambda \cdot \eta_{\text{KTS}}(t) \cdot \nabla_{\mathbf{x}} E_{\text{site}}
+\end{equation}
+where $\eta_{\text{KTS}}(t)$ is the Kinetic Trajectory Shaping schedule
+(Eq.~\ref{eq:kts}). Phase~1 succeeds when at least one compatible atom
+reaches within 2.5\,\AA\ of a candidate HEW site (compatibility
+$\geq -0.5$). Up to 3 retry attempts are made.
+
+\textbf{Phase~2: Connect.}
+Anchor atoms from Phase~1 are fixed via hard coordinate overwrite after
+each ODE integration step. A full molecule is then generated
+($N_{\text{atoms}}$ matching the reference ligand) with weaker site guidance
+($\lambda=0.1$) and a type-preservation bias (cross-entropy penalty,
+strength 0.3). The hard coordinate fix guarantees that anchor positions
+remain exactly at their Phase~1 values throughout the entire Phase~2
+trajectory.
+
+\textbf{Kinetic Trajectory Shaping.}
+The time-varying scaling factor $\eta_{\text{KTS}}(t)$ modulates guidance
+strength across the denoising trajectory:
+\begin{equation}\label{eq:kts}
+\eta_{\text{KTS}}(t) =
+\begin{cases}
+1 + \alpha_0 (1 - t/\tau_{\text{split}}), & t < \tau_{\text{split}} \\
+1 - \beta_0 (\exp(k(t-\tau_{\text{split}})) - 1), & t \geq \tau_{\text{split}}
+\end{cases}
+\end{equation}
+with $\alpha_0=\beta_0=0.01$, $\tau_{\text{split}}=0.6$, $k=3.0$.
+This provides a mild early boost to promote topological exploration,
+followed by exponential damping for geometric refinement.

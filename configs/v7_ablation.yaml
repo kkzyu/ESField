@@ -1,0 +1,100 @@
+# =============================================================================
+# v7.1 Ablation Study — 10 Pockets × 6 Conditions
+# =============================================================================
+#
+# Tests the contribution of each v7.1 component:
+#   1. v7.1_full          — all components enabled (baseline)
+#   2. random_anchor_types — random instead of suggested types
+#   3. no_type_bias        — type_bias_strength = 0
+#   4. soft_restraint      — harmonic restraint instead of hard fix
+#   5. lambda_phase1_2.5   — weaker Phase 1 guidance (λ=2.5)
+#   6. lambda_phase1_10.0  — stronger Phase 1 guidance (λ=10.0)
+#
+# Common settings across all conditions.
+# =============================================================================
+
+# Pockets
+pockets_file: "experiments/pdbbind_water_sites/v71_ablation/pocket_ids_10.txt"
+
+# Samples per condition
+n_samples: 25
+
+# Shared Phase 2 settings
+phase2:
+  steps: 100
+  lambda: 0.1
+  guidance_start: 0.1
+  guidance_end: 0.90
+  grad_clip: 0.3
+
+# KTS (shared)
+kts:
+  alpha0: 0.01
+  beta0: 0.01
+  tau_split: 0.6
+  k: 3.0
+
+# Phase 1 (baseline, overridden per condition)
+phase1:
+  steps: 100
+  n_atoms: 4
+  attempts: 2
+  per_attempt: 5
+  success_distance: 2.5
+  min_compatibility: -0.5
+  lambda: 5.0
+
+# ---------------------------------------------------------------------------
+# Ablation conditions
+# ---------------------------------------------------------------------------
+ablation_conditions:
+  - name: "v7.1_full"
+    description: "All v7.1 components enabled — full method"
+    anchor_type_strategy: "suggested"
+    type_bias_strength: 0.3
+    phase2_hard_fix: true
+    restraint_force: 0.0
+    phase1_lambda: 5.0
+
+  - name: "random_anchor_types"
+    description: "Random anchor types instead of environment-suggested"
+    anchor_type_strategy: "random"
+    type_bias_strength: 0.3
+    phase2_hard_fix: true
+    restraint_force: 0.0
+    phase1_lambda: 5.0
+
+  - name: "no_type_bias"
+    description: "No cross-entropy type preservation (type_bias=0)"
+    anchor_type_strategy: "suggested"
+    type_bias_strength: 0.0
+    phase2_hard_fix: true
+    restraint_force: 0.0
+    phase1_lambda: 5.0
+
+  - name: "soft_restraint"
+    description: "Harmonic restraint (k=10) instead of hard coordinate fix"
+    anchor_type_strategy: "suggested"
+    type_bias_strength: 0.3
+    phase2_hard_fix: false
+    restraint_force: 10.0
+    phase1_lambda: 5.0
+
+  - name: "lambda_phase1_2.5"
+    description: "Weaker Phase 1 guidance (λ=2.5 instead of 5.0)"
+    anchor_type_strategy: "suggested"
+    type_bias_strength: 0.3
+    phase2_hard_fix: true
+    restraint_force: 0.0
+    phase1_lambda: 2.5
+
+  - name: "lambda_phase1_10.0"
+    description: "Stronger Phase 1 guidance (λ=10.0 instead of 5.0)"
+    anchor_type_strategy: "suggested"
+    type_bias_strength: 0.3
+    phase2_hard_fix: true
+    restraint_force: 0.0
+    phase1_lambda: 10.0
+
+# Output
+output_dir: "experiments/pdbbind_water_sites/v71_ablation"

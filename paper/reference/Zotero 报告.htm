@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline' data:">
+		<title>Zotero 报告</title>
+		<link rel="stylesheet" type="text/css" href="data:text/css;base64,Ym9keSB7Cgljb2xvci1zY2hlbWU6IGxpZ2h0IGRhcms7CgkvKiBUaGVzZSBzaG91bGQgYmUgdGhlIGRlZmF1bHRzLCBidXQganVzdCBpbiBjYXNlOiAqLwoJYmFja2dyb3VuZDogQ2FudmFzOwoJY29sb3I6IENhbnZhc1RleHQ7Cn0KCmEgewoJdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7Cn0KCmJvZHkgewoJcGFkZGluZzogMDsKfQoKdWwucmVwb3J0IGxpLml0ZW0gewoJYm9yZGVyLXRvcDogNHB4IHNvbGlkICM1NTU7CglwYWRkaW5nLXRvcDogMWVtOwoJcGFkZGluZy1sZWZ0OiAxZW07CglwYWRkaW5nLXJpZ2h0OiAxZW07CgltYXJnaW4tYm90dG9tOiAyZW07Cn0KCmgxLCBoMiwgaDMsIGg0LCBoNSwgaDYgewoJZm9udC13ZWlnaHQ6IG5vcm1hbDsKfQoKaDIgewoJbWFyZ2luOiAwIDAgLjVlbTsKfQoKaDIucGFyZW50SXRlbSB7Cglmb250LXdlaWdodDogNjAwOwoJZm9udC1zaXplOiAxZW07CglwYWRkaW5nOiAwIDAgLjVlbTsKCWJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjY2NjOwp9CgovKiBJZiBjb21iaW5pbmcgY2hpbGRyZW4sIGRpc3BsYXkgcGFyZW50IHNsaWdodGx5IGxhcmdlciAqLwp1bC5yZXBvcnQuY29tYmluZUNoaWxkSXRlbXMgaDIucGFyZW50SXRlbSB7Cglmb250LXNpemU6IDEuMWVtOwoJcGFkZGluZy1ib3R0b206IC43NWVtOwoJbWFyZ2luLWJvdHRvbTogLjRlbTsKfQoKaDIucGFyZW50SXRlbSAudGl0bGUgewoJZm9udC13ZWlnaHQ6IG5vcm1hbDsKfQoKaDMgewoJbWFyZ2luLWJvdHRvbTogLjZlbTsKCWZvbnQtd2VpZ2h0OiA2MDAgIWltcG9ydGFudDsKCWZvbnQtc2l6ZTogMWVtOwoJZGlzcGxheTogYmxvY2s7Cn0KCi8qIE1ldGFkYXRhIHRhYmxlICovCnRoIHsKCXZlcnRpY2FsLWFsaWduOiB0b3A7Cgl0ZXh0LWFsaWduOiByaWdodDsKCXdpZHRoOiAxNSU7Cgl3aGl0ZS1zcGFjZTogbm93cmFwOwp9Cgp0ZCB7CglwYWRkaW5nLWxlZnQ6IC41ZW07Cn0KCgp1bC5yZXBvcnQsIHVsLm5vdGVzLCB1bC50YWdzIHsKCWxpc3Qtc3R5bGU6IG5vbmU7CgltYXJnaW4tbGVmdDogMDsKCXBhZGRpbmctbGVmdDogMDsKfQoKLyogVGFncyAqLwpoMy50YWdzIHsKCWZvbnQtc2l6ZTogMS4xZW07Cn0KCnVsLnRhZ3MgewoJbGluZS1oZWlnaHQ6IDEuNzVlbTsKCWxpc3Qtc3R5bGU6IG5vbmU7Cn0KCnVsLnRhZ3MgbGkgewoJZGlzcGxheTogaW5saW5lOwp9Cgp1bC50YWdzIGxpOm5vdCg6bGFzdC1jaGlsZCk6YWZ0ZXIgewoJY29udGVudDogJywgJzsKfQoKCi8qIENoaWxkIG5vdGVzICovCmgzLm5vdGVzIHsKCWZvbnQtc2l6ZTogMS4xZW07Cn0KCnVsLm5vdGVzIHsKCW1hcmdpbi1ib3R0b206IDEuMmVtOwp9Cgp1bC5ub3RlcyA+IGxpOmZpcnN0LWNoaWxkIHAgewoJbWFyZ2luLXRvcDogMDsKfQoKdWwubm90ZXMgPiBsaSB7CglwYWRkaW5nOiAuN2VtIDA7Cn0KCnVsLm5vdGVzID4gbGk6bm90KDpsYXN0LWNoaWxkKSB7Cglib3JkZXItYm90dG9tOiAxcHggI2NjYyBzb2xpZDsKfQoKCnVsLm5vdGVzID4gbGkgcDpmaXJzdC1jaGlsZCB7CgltYXJnaW4tdG9wOiAwOwp9Cgp1bC5ub3RlcyA+IGxpIHA6bGFzdC1jaGlsZCB7CgltYXJnaW4tYm90dG9tOiAwOwp9CgovKiBBZGQgcXVvdGF0aW9uIG1hcmtzIGFyb3VuZCBibG9ja3F1b3RlICovCnVsLm5vdGVzID4gbGkgYmxvY2txdW90ZSBwOm5vdCg6ZW1wdHkpOmJlZm9yZSwKbGkubm90ZSBibG9ja3F1b3RlIHA6bm90KDplbXB0eSk6YmVmb3JlIHsKCWNvbnRlbnQ6ICfigJwnOwp9Cgp1bC5ub3RlcyA+IGxpIGJsb2NrcXVvdGUgcDpub3QoOmVtcHR5KTpsYXN0LWNoaWxkOmFmdGVyLApsaS5ub3RlIGJsb2NrcXVvdGUgcDpub3QoOmVtcHR5KTpsYXN0LWNoaWxkOmFmdGVyIHsKCWNvbnRlbnQ6ICfigJ0nOwp9CgovKiBQcmVzZXJ2ZSB3aGl0ZXNwYWNlIG9uIHBsYWludGV4dCBub3RlcyAqLwp1bC5ub3RlcyBsaSBwLnBsYWludGV4dCwgbGkubm90ZSBwLnBsYWludGV4dCwgZGl2Lm5vdGUgcC5wbGFpbnRleHQgewoJd2hpdGUtc3BhY2U6IHByZS13cmFwOwp9CgovKiBEaXNwbGF5IHRhZ3Mgd2l0aGluIGNoaWxkIG5vdGVzIGlubGluZSAqLwp1bC5ub3RlcyBoMy50YWdzIHsKCWRpc3BsYXk6IGlubGluZTsKCWZvbnQtc2l6ZTogMWVtOwp9Cgp1bC5ub3RlcyBoMy50YWdzOmFmdGVyIHsKCWNvbnRlbnQ6ICcgJzsKfQoKdWwubm90ZXMgdWwudGFncyB7CglkaXNwbGF5OiBpbmxpbmU7Cn0KCnVsLm5vdGVzIHVsLnRhZ3MgbGk6bm90KDpsYXN0LWNoaWxkKTphZnRlciB7Cgljb250ZW50OiAnLCAnOwp9CgoKLyogQ2hpbGQgYXR0YWNobWVudHMgKi8KaDMuYXR0YWNobWVudHMgewoJZm9udC1zaXplOiAxLjFlbTsKfQoKdWwuYXR0YWNobWVudHMgbGkgewoJcGFkZGluZy10b3A6IC41ZW07Cn0KCnVsLmF0dGFjaG1lbnRzIGRpdi5ub3RlIHsKCW1hcmdpbi1sZWZ0OiAyZW07Cn0KCnVsLmF0dGFjaG1lbnRzIGRpdi5ub3RlIHA6Zmlyc3QtY2hpbGQgewoJbWFyZ2luLXRvcDogLjc1ZW07Cn0KCmRpdiB0YWJsZSB7Cglib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlOwp9CgpkaXYgdGFibGUgdGQsIGRpdiB0YWJsZSB0aCB7Cglib3JkZXI6IDFweCAjY2NjIHNvbGlkOwoJYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTsKCXdvcmQtYnJlYWs6IGJyZWFrLWFsbDsKfQoKZGl2IHRhYmxlIHRkIHA6ZW1wdHk6OmFmdGVyLCBkaXYgdGFibGUgdGggcDplbXB0eTo6YWZ0ZXIgewoJY29udGVudDogIlwwMGEwIjsKfQoKZGl2IHRhYmxlIHRkICo6Zmlyc3QtY2hpbGQsIGRpdiB0YWJsZSB0aCAqOmZpcnN0LWNoaWxkIHsKCW1hcmdpbi10b3A6IDA7Cn0KCmRpdiB0YWJsZSB0ZCAqOmxhc3QtY2hpbGQsIGRpdiB0YWJsZSB0aCAqOmxhc3QtY2hpbGQgewoJbWFyZ2luLWJvdHRvbTogMDsKfQo=">
+		<link rel="stylesheet" type="text/css" media="screen,projection" href="data:text/css;base64,LyogR2VuZXJpYyBzdHlsZXMgKi8KYm9keSB7Cglmb250OiA2Mi41JSBHZW9yZ2lhLCBUaW1lcywgc2VyaWY7Cgl3aWR0aDogNzgwcHg7CgltYXJnaW46IDAgYXV0bzsKfQoKaDIgewoJZm9udC1zaXplOiAxLjVlbTsKCWxpbmUtaGVpZ2h0OiAxLjVlbTsKCWZvbnQtZmFtaWx5OiBHZW9yZ2lhLCBUaW1lcywgc2VyaWY7Cn0KCnAgewoJbGluZS1oZWlnaHQ6IDEuNWVtOwp9CgphOmFueS1saW5rIHsKCWNvbG9yOiAjOTAwOwp9CgphOmhvdmVyLCBhOmFjdGl2ZSB7Cgljb2xvcjogIzc3NzsKfQoKQG1lZGlhIChwcmVmZXJzLWNvbG9yLXNjaGVtZTogZGFyaykgewoJYTphbnktbGluayB7CgkJY29sb3I6ICNmMDA7Cgl9CgoJYTpob3ZlciwgYTphY3RpdmUgewoJCWNvbG9yOiAjOTk5OwoJfQp9CgoKdWwucmVwb3J0IHsKCWZvbnQtc2l6ZTogMS40ZW07Cgl3aWR0aDogNjgwcHg7CgltYXJnaW46IDAgYXV0bzsKCXBhZGRpbmc6IDIwcHggMjBweDsKfQoKLyogTWV0YWRhdGEgdGFibGUgKi8KdGFibGUgewoJYm9yZGVyOiAxcHggI2NjYyBzb2xpZDsKCW92ZXJmbG93OiBhdXRvOwoJd2lkdGg6IDEwMCU7CgltYXJnaW46IC4xZW0gYXV0byAuNzVlbTsKCXBhZGRpbmc6IDAuNWVtOwp9Cg==">
+		<link rel="stylesheet" type="text/css" media="print" href="data:text/css;base64,Ym9keSB7Cglmb250OiAxMnB0ICJUaW1lcyBOZXcgUm9tYW4iLCBUaW1lcywgR2VvcmdpYSwgc2VyaWY7CgltYXJnaW46IDA7Cgl3aWR0aDogYXV0bzsKfQoKLyogUGFnZSBCcmVha3MgKHBhZ2UtYnJlYWstaW5zaWRlIG9ubHkgcmVjb2duaXplZCBieSBPcGVyYSkgKi8KaDEsIGgyLCBoMywgaDQsIGg1LCBoNiB7CglwYWdlLWJyZWFrLWFmdGVyOiBhdm9pZDsKCXBhZ2UtYnJlYWstaW5zaWRlOiBhdm9pZDsKfQoKdWwsIG9sLCBkbCB7CglwYWdlLWJyZWFrLWluc2lkZTogYXZvaWQ7Cgljb2xvci1hZGp1c3Q6IGV4YWN0Owp9CgpoMiB7Cglmb250LXNpemU6IDEuM2VtOwoJbGluZS1oZWlnaHQ6IDEuM2VtOwp9CgphIHsKCWNvbG9yOiBpbmhlcml0OwoJdGV4dC1kZWNvcmF0aW9uOiBub25lOwp9Cg==">
+	</head>
+	<body>
+		<ul class="report combineChildItems">
+			<li id="item_YY647DXS" class="item journalArticle">
+			<h2>Contrastive Energy Prediction for Exact Energy-Guided  Diffusion Sampling in Offline Reinforcement Learning</h2>
+				<table>
+					<tbody><tr>
+						<th>条目类型</th>
+						<td>期刊文章</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Cheng Lu</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Huayu Chen</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Jianfei Chen</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Hang Su</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Chongxuan Li</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Jun Zhu</td>
+					</tr>
+					<tr>
+					<th>摘要</th>
+						<td>Guided sampling is a vital approach for applying diffusion 
+models in real-world tasks that embeds human-deﬁned guidance during the 
+sampling procedure. This paper considers a general setting where the 
+guidance is deﬁned by an (unnormalized) energy function. The main 
+challenge for this setting is that the intermediate guidance during the 
+diffusion sampling procedure, which is jointly deﬁned by the sampling 
+distribution and the energy function, is unknown and is hard to 
+estimate. To address this challenge, we propose an exact formulation of 
+the intermediate guidance as well as a novel training objective named 
+contrastive energy prediction (CEP) to learn the exact guidance. Our 
+method is guaranteed to converge to the exact guidance under unlimited 
+model capacity and data samples, while previous methods can not. We 
+demonstrate the effectiveness of our method by applying it to ofﬂine 
+reinforcement learning (RL). Extensive experiments on D4RL benchmarks 
+demonstrate that our method outperforms existing state-of-the-art 
+algorithms. We also provide some examples of applying CEP for image 
+synthesis to demonstrate the scalability of CEP on high-dimensional 
+data. Code is available at https://github.com/thu-ml/ 
+CEP-energy-guided-diffusion.</td>
+					</tr>
+					<tr>
+					<th>语言</th>
+						<td>en</td>
+					</tr>
+					<tr>
+					<th>文库编目</th>
+						<td>Zotero</td>
+					</tr>
+					<tr>
+					<th>引用关键词</th>
+						<td>luContrastiveEnergyPrediction</td>
+					</tr>
+					<tr>
+					<th>添加日期</th>
+						<td>2026/5/8 16:18:50</td>
+					</tr>
+					<tr>
+					<th>修改日期</th>
+						<td>2026/5/8 16:19:13</td>
+					</tr>
+				</tbody></table>
+			</li>
+
+
+			<li id="item_R5K2QQLE" class="item preprint">
+			<h2>Delta Score Matters! Spatial Adaptive Multi Guidance in Diffusion Models</h2>
+				<table>
+					<tbody><tr>
+						<th>条目类型</th>
+						<td>预印本</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Haosen Li</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Wenshuo Chen</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Lei Wang</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Shaofeng Liang</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Bowen Tian</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Soning Lai</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Yutao Yue</td>
+					</tr>
+					<tr>
+					<th>摘要</th>
+						<td>Diffusion models have achieved remarkable success in 
+synthesizing complex static and temporal visuals, a breakthrough largely
+ driven by Classifier-Free Guidance (CFG). However, despite its pivotal 
+role in aligning generated content with textual prompts, standard CFG 
+relies on a globally uniform scalar. This homogeneous amplification 
+traps models in a well-documented ”detail-artifact dilemma”: low 
+guidance scales fail to inject intricate semantics, while high scales 
+inevitably cause structural degradation, color over-saturation, and 
+temporal inconsistencies in videos. In this paper, we expose the 
+physical root of this flaw through the lens of differential geometry. By
+ analyzing Tweedie’s Formula, we reveal that CFG intrinsically performs a
+ tangential linear extrapolation. Because the natural data manifold is 
+highly curved, this uniform linear step introduces a severe orthogonal 
+deviation. To keep the generation trajectory safely bounded, we 
+formulate a theoretical upper bound for spatial and adaptive guidance. 
+Based on these geometric insights, we propose Spatial Adaptive Multi 
+Guidance (SAMG), a training-free and virtually zero-cost sampling 
+algorithm. SAMG dynamically computes point-wise conditional guidance 
+energy, applying a conservative minimum scale to high-energy boundary 
+regions to preserve delicate micro-textures, while deploying an 
+aggressive maximum scale in low-energy regions to maximize semantic 
+injection. Extensive experiments across diverse image (SD 1.5, SDXL, 
+SD3.5 Medium) and video (CogVideoX, ModelScope) architectures 
+demonstrate that SAMG effectively resolves the detail-artifact dilemma, 
+achieving superior semantic alignment, structural integrity, and 
+temporal smoothness without any computational overhead.</td>
+					</tr>
+					<tr>
+					<th>日期</th>
+						<td>2026</td>
+					</tr>
+					<tr>
+					<th>文库编目</th>
+						<td>DOI.org (Datacite)</td>
+					</tr>
+					<tr>
+					<th>网址</th>
+						<td><a href="https://arxiv.org/abs/2604.26503">https://arxiv.org/abs/2604.26503</a></td>
+					</tr>
+					<tr>
+					<th>访问时间</th>
+						<td>2026/5/8 16:21:30</td>
+					</tr>
+					<tr>
+					<th>版权</th>
+						<td>Creative Commons Attribution Non Commercial No Derivatives 4.0 International</td>
+					</tr>
+					<tr>
+					<th>其他</th>
+						<td>Version Number: 1</td>
+					</tr>
+					<tr>
+					<th>DOI</th>
+						<td><a href="http://doi.org/10.48550/ARXIV.2604.26503">10.48550/ARXIV.2604.26503</a></td>
+					</tr>
+					<tr>
+					<th>仓库</th>
+						<td>arXiv</td>
+					</tr>
+					<tr>
+					<th>引用关键词</th>
+						<td>liDeltaScoreMatters2026</td>
+					</tr>
+					<tr>
+					<th>添加日期</th>
+						<td>2026/5/8 16:21:30</td>
+					</tr>
+					<tr>
+					<th>修改日期</th>
+						<td>2026/5/8 16:21:33</td>
+					</tr>
+				</tbody></table>
+				<h3 class="tags">标签：</h3>
+				<ul class="tags">
+					<li>FOS: Computer and information sciences</li>
+					<li>Computer Vision and Pattern Recognition (cs.CV)</li>
+				</ul>
+			</li>
+
+
+			<li id="item_V5TZKS24" class="item journalArticle">
+			<h2>Energy Matching: Unifying Flow Matching and Energy-Based Models for Generative Modeling</h2>
+				<table>
+					<tbody><tr>
+						<th>条目类型</th>
+						<td>期刊文章</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Michal Balcerak</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Tamaz Amiranashvili</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Antonio Terpin</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Suprosanna Shit</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Lea Bogensperger</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Sebastian Kaltenbach</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Petros Koumoutsakos</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Bjoern Menze</td>
+					</tr>
+					<tr>
+					<th>摘要</th>
+						<td>Current state-of-the-art generative models map noise to data 
+distributions by matching flows or scores. A key limitation of these 
+models is their inability to readily integrate available partial 
+observations and additional priors. In contrast, energybased models 
+(EBMs) address this by incorporating corresponding scalar energy terms. 
+Here, we propose Energy Matching, a framework that endows flow-based 
+approaches with the flexibility of EBMs. Far from the data manifold, 
+samples move from noise to data along irrotational, optimal transport 
+paths. As they approach the data manifold, an entropic energy term 
+guides the system into a Boltzmann equilibrium distribution, explicitly 
+capturing the underlying likelihood structure of the data. We 
+parameterize these dynamics with a single time-independent scalar field,
+ which serves as both a powerful generator and a flexible prior for 
+effective regularization of inverse problems. The present method 
+substantially outperforms existing EBMs on CIFAR-10 and ImageNet 
+generation in terms of fidelity, while retaining simulation-free 
+training of transport-based approaches away from the data manifold. 
+Furthermore, we leverage the flexibility of the method to introduce an 
+interaction energy that supports the exploration of diverse modes, which
+ we demonstrate in a controlled protein generation setting. This 
+approach learns a scalar potential energy, without time conditioning, 
+auxiliary generators, or additional networks, marking a significant 
+departure from recent EBM methods. We believe this simplified yet 
+rigorous formulation significantly advances EBMs capabilities and paves 
+the way for their wider adoption in generative modeling in diverse 
+domains.</td>
+					</tr>
+					<tr>
+					<th>语言</th>
+						<td>en</td>
+					</tr>
+					<tr>
+					<th>文库编目</th>
+						<td>Zotero</td>
+					</tr>
+					<tr>
+					<th>引用关键词</th>
+						<td>balcerakEnergyMatchingUnifying</td>
+					</tr>
+					<tr>
+					<th>添加日期</th>
+						<td>2026/5/8 16:21:37</td>
+					</tr>
+					<tr>
+					<th>修改日期</th>
+						<td>2026/5/8 16:21:38</td>
+					</tr>
+				</tbody></table>
+			</li>
+
+
+			<li id="item_HIJEMHIG" class="item preprint">
+			<h2>Energy-Based Flow Matching for Generating 3D Molecular Structure</h2>
+				<table>
+					<tbody><tr>
+						<th>条目类型</th>
+						<td>预印本</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Wenyin Zhou</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Christopher Iliffe Sprague</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Vsevolod Viliuga</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Matteo Tadiello</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Arne Elofsson</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Hossein Azizpour</td>
+					</tr>
+					<tr>
+					<th>摘要</th>
+						<td>Molecular structure generation is a fundamental problem that 
+involves determining the 3D positions of molecules’ constituents. It has
+ crucial biological applications, such as molecular docking, protein 
+folding, and molecular design. Recent advances in generative modeling, 
+such as diffusion models and flow matching, have made great progress on 
+these tasks by modeling molecular conformations as a distribution. In 
+this work, we focus on flow matching and adopt an energybased 
+perspective to improve training and inference of structure generation 
+models. Our view results in a mapping function, represented by a deep 
+network, that is directly learned to iteratively map random 
+configurations, i.e. samples from the source distribution, to target 
+structures, i.e. points in the data manifold. This yields a conceptually
+ simple and empirically effective flow matching setup that is 
+theoretically justified and has interesting connections to fundamental 
+properties such as idempotency and stability, as well as the empirically
+ useful techniques such as structure refinement in AlphaFold. 
+Experiments on protein docking as well as protein backbone generation 
+consistently demonstrate the method’s effectiveness, where it 
+outperforms recent baselines of task-associated flow matching and 
+diffusion models, using a similar computational budget.</td>
+					</tr>
+					<tr>
+					<th>日期</th>
+						<td>2025</td>
+					</tr>
+					<tr>
+					<th>文库编目</th>
+						<td>DOI.org (Datacite)</td>
+					</tr>
+					<tr>
+					<th>网址</th>
+						<td><a href="https://arxiv.org/abs/2508.18949">https://arxiv.org/abs/2508.18949</a></td>
+					</tr>
+					<tr>
+					<th>访问时间</th>
+						<td>2026/5/8 16:16:38</td>
+					</tr>
+					<tr>
+					<th>版权</th>
+						<td>Creative Commons Attribution 4.0 International</td>
+					</tr>
+					<tr>
+					<th>其他</th>
+						<td>Version Number: 1</td>
+					</tr>
+					<tr>
+					<th>DOI</th>
+						<td><a href="http://doi.org/10.48550/ARXIV.2508.18949">10.48550/ARXIV.2508.18949</a></td>
+					</tr>
+					<tr>
+					<th>仓库</th>
+						<td>arXiv</td>
+					</tr>
+					<tr>
+					<th>引用关键词</th>
+						<td>zhouEnergyBasedFlowMatching2025</td>
+					</tr>
+					<tr>
+					<th>添加日期</th>
+						<td>2026/5/8 16:16:38</td>
+					</tr>
+					<tr>
+					<th>修改日期</th>
+						<td>2026/5/8 16:16:46</td>
+					</tr>
+				</tbody></table>
+				<h3 class="tags">标签：</h3>
+				<ul class="tags">
+					<li>FOS: Computer and information sciences</li>
+					<li>Machine Learning (cs.LG)</li>
+				</ul>
+			</li>
+
+
+			<li id="item_5X66295D" class="item preprint">
+			<h2>Energy-Weighted Flow Matching: Unlocking Continuous Normalizing Flows for Efficient and Scalable Boltzmann Sampling</h2>
+				<table>
+					<tbody><tr>
+						<th>条目类型</th>
+						<td>预印本</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Niclas Dern</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Lennart Redl</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Sebastian Pfister</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Marcel Kollovieh</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>David Lüdke</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Stephan Günnemann</td>
+					</tr>
+					<tr>
+					<th>摘要</th>
+						<td>Sampling from unnormalized target distributions, e.g. 
+Boltzmann distributions µtarget(x) ∝ exp(−E(x)/T ), is fundamental to 
+many scientific applications yet computationally challenging due to 
+complex, high-dimensional energy landscapes. Existing approaches 
+applying modern generative models to Boltzmann distributions either 
+require large datasets of samples drawn from the target distribution or,
+ when using only energy evaluations for training, cannot efficiently 
+leverage the expressivity of advanced architectures like continuous 
+normalizing flows that have shown promise for molecular sampling. To 
+address these shortcomings, we introduce Energy-Weighted Flow Matching 
+(EWFM), a novel training objective enabling continuous normalizing flows
+ to model Boltzmann distributions using only energy function 
+evaluations. Our objective reformulates conditional flow matching via 
+importance sampling, allowing training with samples from arbitrary 
+proposal distributions. Based on this objective, we develop two 
+algorithms: iterative EWFM (iEWFM), which progressively refines 
+proposals through iterative training, and annealed EWFM (aEWFM), which 
+additionally incorporates temperature annealing for challenging energy 
+landscapes. On benchmark systems, including challenging 55-particle 
+Lennard-Jones clusters, our algorithms demonstrate sample quality 
+competitive with established energy-only methods while requiring up to 
+three orders of magnitude fewer energy evaluations.</td>
+					</tr>
+					<tr>
+					<th>日期</th>
+						<td>2025</td>
+					</tr>
+					<tr>
+					<th>语言</th>
+						<td>en</td>
+					</tr>
+					<tr>
+					<th>短标题</th>
+						<td>Energy-Weighted Flow Matching</td>
+					</tr>
+					<tr>
+					<th>文库编目</th>
+						<td>DOI.org (Datacite)</td>
+					</tr>
+					<tr>
+					<th>网址</th>
+						<td><a href="https://arxiv.org/abs/2509.03726">https://arxiv.org/abs/2509.03726</a></td>
+					</tr>
+					<tr>
+					<th>访问时间</th>
+						<td>2026/5/8 16:22:13</td>
+					</tr>
+					<tr>
+					<th>版权</th>
+						<td>Creative Commons Attribution 4.0 International</td>
+					</tr>
+					<tr>
+					<th>其他</th>
+						<td>Version Number: 2</td>
+					</tr>
+					<tr>
+					<th>DOI</th>
+						<td><a href="http://doi.org/10.48550/ARXIV.2509.03726">10.48550/ARXIV.2509.03726</a></td>
+					</tr>
+					<tr>
+					<th>仓库</th>
+						<td>arXiv</td>
+					</tr>
+					<tr>
+					<th>引用关键词</th>
+						<td>dernEnergyWeightedFlowMatching2025</td>
+					</tr>
+					<tr>
+					<th>添加日期</th>
+						<td>2026/5/8 16:22:13</td>
+					</tr>
+					<tr>
+					<th>修改日期</th>
+						<td>2026/5/8 16:22:15</td>
+					</tr>
+				</tbody></table>
+				<h3 class="tags">标签：</h3>
+				<ul class="tags">
+					<li>FOS: Computer and information sciences</li>
+					<li>Machine Learning (cs.LG)</li>
+					<li>Machine Learning (stat.ML)</li>
+				</ul>
+			</li>
+
+
+			<li id="item_T75EIRV2" class="item journalArticle">
+			<h2>FusionDock: Physics-informed Diffusion Model for Molecular Docking</h2>
+				<table>
+					<tbody><tr>
+						<th>条目类型</th>
+						<td>期刊文章</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Matthew R Masters</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Amr H Mahmoud</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Markus A Lill</td>
+					</tr>
+					<tr>
+					<th>摘要</th>
+						<td>Protein-ligand docking is an important task in drug discovery 
+and structure-based drug design. Generative deep learning models have 
+recently emerged as a new approach to sampling proteinligand 
+conformations and have shown state-of-theart results. However, these 
+models are often solely based on patterns observed in a given dataset 
+and are not based on the underlying physical process. We propose 
+FusionDock, a diffusion model for protein-ligand docking which 
+incorporates physical priors, such as classical mechanics principles, 
+known molecular interactions, and constraint satisfaction. The aim of 
+such a physics-informed model is to reduce overfitting, improve 
+generalization, and to generate physically-meaningful structures. We 
+demonstrate the performance of our model across a large test set and 
+show that it outperforms existing deep learning methods.</td>
+					</tr>
+					<tr>
+					<th>语言</th>
+						<td>en</td>
+					</tr>
+					<tr>
+					<th>文库编目</th>
+						<td>Zotero</td>
+					</tr>
+					<tr>
+					<th>引用关键词</th>
+						<td>mastersFusionDockPhysicsinformedDiffusion</td>
+					</tr>
+					<tr>
+					<th>添加日期</th>
+						<td>2026/5/8 16:22:23</td>
+					</tr>
+					<tr>
+					<th>修改日期</th>
+						<td>2026/5/8 16:22:24</td>
+					</tr>
+				</tbody></table>
+			</li>
+
+
+			<li id="item_AZWIRXB2" class="item journalArticle">
+			<h2>PIDiff: Physics informed diffusion model for protein pocket-specific 3D molecular generation</h2>
+				<table>
+					<tbody><tr>
+						<th>条目类型</th>
+						<td>期刊文章</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Seungyeon Choi</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Sangmin Seo</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Byung Ju Kim</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Chihyun Park</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Sanghyun Park</td>
+					</tr>
+					<tr>
+					<th>摘要</th>
+						<td>Designing drugs capable of binding to the structure of target 
+proteins for treating diseases is essential in drug development. Recent 
+remarkable advancements in geometric deep learning have led to 
+unprecedented progress in three-dimensional (3D) generation of ligands 
+that can bind to the protein pocket. However, most existing methods 
+primarily focus on modeling the geometric information of ligands in 3D 
+space. Consequently, these methods fail to consider that the binding of 
+proteins and ligands is a phenomenon driven by intrinsic physicochemical
+ principles. Motivated by this understanding, we propose PIDiff, a model
+ for generating molecules by accounting in the physicochemical 
+principles of protein–ligand binding. Our model learns not only the 
+structural information of proteins and ligands but also to minimize the 
+binding free energy between them. To evaluate the proposed model, we 
+introduce an experimental framework that surpasses traditional 
+assessment methods by encompassing various essential aspects for the 
+practical application of generative models to actual drug development. 
+The results confirm that our model outperforms baseline models on the 
+CrossDocked2020 benchmark dataset, demonstrating its superiority. 
+Through diverse experiments, we have illustrated the promising potential
+ of the proposed model in practical drug development.</td>
+					</tr>
+					<tr>
+					<th>日期</th>
+						<td>09/2024</td>
+					</tr>
+					<tr>
+					<th>语言</th>
+						<td>en</td>
+					</tr>
+					<tr>
+					<th>短标题</th>
+						<td>PIDiff</td>
+					</tr>
+					<tr>
+					<th>文库编目</th>
+						<td>DOI.org (Crossref)</td>
+					</tr>
+					<tr>
+					<th>网址</th>
+						<td><a href="https://linkinghub.elsevier.com/retrieve/pii/S0010482524009508">https://linkinghub.elsevier.com/retrieve/pii/S0010482524009508</a></td>
+					</tr>
+					<tr>
+					<th>访问时间</th>
+						<td>2026/5/9 12:26:19</td>
+					</tr>
+					<tr>
+					<th>卷次</th>
+						<td>180</td>
+					</tr>
+					<tr>
+					<th>页码</th>
+						<td>108865</td>
+					</tr>
+					<tr>
+					<th>出版物</th>
+						<td>Computers in Biology and Medicine</td>
+					</tr>
+					<tr>
+					<th>DOI</th>
+						<td><a href="http://doi.org/10.1016/j.compbiomed.2024.108865">10.1016/j.compbiomed.2024.108865</a></td>
+					</tr>
+					<tr>
+					<th>引用关键词</th>
+						<td>choiPIDiffPhysicsInformed2024a</td>
+					</tr>
+					<tr>
+					<th>刊名简称</th>
+						<td>Computers in Biology and Medicine</td>
+					</tr>
+					<tr>
+					<th>ISSN</th>
+						<td>00104825</td>
+					</tr>
+					<tr>
+					<th>添加日期</th>
+						<td>2026/5/9 12:26:19</td>
+					</tr>
+					<tr>
+					<th>修改日期</th>
+						<td>2026/5/9 12:26:23</td>
+					</tr>
+				</tbody></table>
+			</li>
+
+
+			<li id="item_8G9P47XI" class="item preprint">
+			<h2>SuperWater: Predicting Water Molecule Positions on Protein Structures by Generative AI</h2>
+				<table>
+					<tbody><tr>
+						<th>条目类型</th>
+						<td>预印本</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Xiaohan Kuang</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Zhaoqian Su</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Yunchao (Lance) Liu</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Xiaobo Lin</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Jesse Spencer-Smith</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Tyler Derr</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Yinghao Wu</td>
+					</tr>
+					<tr>
+						<th class="author">作者</th>
+						<td>Jens Meiler</td>
+					</tr>
+					<tr>
+					<th>摘要</th>
+						<td>Abstract
+          Water molecules play a significant role in maintaining protein
+ structural stability and facilitating molecular interactions. Accurate 
+prediction of water molecule positions around protein structures is 
+essential for understanding their biological roles and has significant 
+implications for protein engineering and drug discovery. Here, we 
+introduce SuperWater, a novel generative AI framework that integrates a 
+score-based diffusion model with equivariant graph neural networks to 
+predict water molecule placements around proteins with high accuracy. 
+SuperWater surpasses existing methods, delivering state-of-the-art 
+performance in both crystal water coverage and prediction precision, 
+achieving water localization within 0.3 ± 0.06 °A of experimentally 
+validated positions. We demonstrate the capabilities of SuperWater 
+through case studies involving protein hydration, protein-ligand 
+binding, and protein-protein binding sites. This framework can be 
+adapted for various applications, including structural biology, binding 
+site prediction, multi-body docking, and water-mediated drug design.</td>
+					</tr>
+					<tr>
+					<th>日期</th>
+						<td>2024-11-20</td>
+					</tr>
+					<tr>
+					<th>语言</th>
+						<td>en</td>
+					</tr>
+					<tr>
+					<th>短标题</th>
+						<td>SuperWater</td>
+					</tr>
+					<tr>
+					<th>文库编目</th>
+						<td>DOI.org (Crossref)</td>
+					</tr>
+					<tr>
+					<th>网址</th>
+						<td><a href="http://biorxiv.org/lookup/doi/10.1101/2024.11.18.624208">http://biorxiv.org/lookup/doi/10.1101/2024.11.18.624208</a></td>
+					</tr>
+					<tr>
+					<th>访问时间</th>
+						<td>2026/5/8 16:17:04</td>
+					</tr>
+					<tr>
+					<th>版权</th>
+						<td>http://creativecommons.org/licenses/by-nc/4.0/</td>
+					</tr>
+					<tr>
+					<th>DOI</th>
+						<td><a href="http://doi.org/10.1101/2024.11.18.624208">10.1101/2024.11.18.624208</a></td>
+					</tr>
+					<tr>
+					<th>仓库</th>
+						<td>Bioinformatics</td>
+					</tr>
+					<tr>
+					<th>引用关键词</th>
+						<td>kuangSuperWaterPredictingWater2024</td>
+					</tr>
+					<tr>
+					<th>添加日期</th>
+						<td>2026/5/8 16:17:04</td>
+					</tr>
+					<tr>
+					<th>修改日期</th>
+						<td>2026/5/8 16:17:57</td>
+					</tr>
+				</tbody></table>
+				<h3 class="attachments">附件</h3>
+				<ul class="attachments">
+					<li id="item_3KFNXZKR">nihpp-2024.11.18.624208v1					</li>
+				</ul>
+			</li>
+
+		</ul>
+	
+</body></html>
