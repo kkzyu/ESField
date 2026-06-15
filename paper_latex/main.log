@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.6.7)  7 JUN 2026 20:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.6.7)  15 JUN 2026 17:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -238,6 +238,20 @@ Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 \backup@length=\skip57
 \ar@cellbox=\box62
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks26
+\thm@bodyfont=\toks27
+\thm@headfont=\toks28
+\thm@notefont=\toks29
+\thm@headpunct=\toks30
+\thm@preskip=\skip58
+\thm@postskip=\skip59
+\thm@headsep=\skip60
+\dth@everypar=\toks31
+)
+\c@theorem=\count289
+
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen173
@@ -250,19 +264,19 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen180
 \cmidrulekern=\dimen181
 \defaultaddspace=\dimen182
-\@cmidla=\count289
-\@cmidlb=\count290
+\@cmidla=\count290
+\@cmidlb=\count291
 \@aboverulesep=\dimen183
 \@belowrulesep=\dimen184
-\@thisruleclass=\count291
-\@lastruleclass=\count292
+\@thisruleclass=\count292
+\@lastruleclass=\count293
 \@thisrulewidth=\dimen185
 )
 (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip58
-\multirow@cntb=\count293
-\multirow@dima=\skip59
+\multirow@colwidth=\skip61
+\multirow@cntb=\count294
+\multirow@dima=\skip62
 \bigstrutjot=\dimen186
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -299,20 +313,20 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen195
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count294
-\c@continuedfloat=\count295
+\c@caption@flags=\count295
+\c@continuedfloat=\count296
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
-\c@subfigure=\count296
-\c@subtable=\count297
+\c@subfigure=\count297
+\c@subtable=\count298
 )
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count298
-\float@exts=\toks26
+\c@float@type=\count299
+\float@exts=\toks32
 \float@box=\box63
-\@float@everytoks=\toks27
+\@float@everytoks=\toks33
 \@floatcapt=\box64
 )
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -334,8 +348,8 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
-\everycr=\toks28
-\minrowclearance=\skip60
+\everycr=\toks34
+\minrowclearance=\skip63
 )
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
@@ -362,8 +376,8 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
 \@linkdim=\dimen196
-\Hy@linkcounter=\count299
-\Hy@pagecounter=\count300
+\Hy@linkcounter=\count300
+\Hy@pagecounter=\count301
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
@@ -380,7 +394,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count301
+\Hy@SavedSpaceFactor=\count302
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
@@ -395,7 +409,7 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count302
+\c@Hy@tempcnt=\count303
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
@@ -411,7 +425,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count303
+\Fld@menulength=\count304
 \Field@Width=\dimen198
 \Fld@charsize=\dimen199
 Package hyperref Info: Hyper figures OFF on input line 6076.
@@ -428,9 +442,9 @@ LaTeX Info: Redefining \pageref on input line 6150.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count304
-\c@Item=\count305
-\c@Hfootnote=\count306
+\Hy@abspage=\count305
+\c@Item=\count306
+\c@Hfootnote=\count307
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -442,8 +456,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count307
-\c@bookmark@seq@number=\count308
+\Fld@listcount=\count308
+\c@bookmark@seq@number=\count309
 
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
@@ -454,27 +468,27 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip61
+\Hy@SectionHShift=\skip64
 )
 (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip62
-\bibsep=\skip63
+\bibhang=\skip65
+\bibsep=\skip66
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count309
+\c@NAT@ctr=\count310
 )
 (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip64
+\labelindent=\skip67
 \enit@outerparindent=\dimen256
-\enit@toks=\toks29
+\enit@toks=\toks35
 \enit@inbox=\box65
-\enit@count@id=\count310
-\enitdp@description=\count311
+\enit@count@id=\count311
+\enitdp@description=\count312
 )
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 74.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 74
+h' as default language. on input line 78.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 78
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
@@ -482,24 +496,24 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -542,21 +556,21 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 74.
+or `english'. on input line 78.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count312
+\scratchcounter=\count313
 \scratchdimen=\dimen257
 \scratchbox=\box66
-\nofMPsegments=\count313
-\nofMParguments=\count314
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count315
+\nofMPsegments=\count314
+\nofMParguments=\count315
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count316
 \MPscratchDim=\dimen258
-\MPnumerator=\count316
-\makeMPintoPDFobject=\count317
-\everyMPtoPDFconversion=\toks31
+\MPnumerator=\count317
+\makeMPintoPDFobject=\count318
+\everyMPtoPDFconversion=\toks37
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -570,7 +584,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 74.
+Package hyperref Info: Link coloring ON on input line 78.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -581,182 +595,331 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count318
+\c@section@level=\count319
 )
-LaTeX Info: Redefining \ref on input line 74.
-LaTeX Info: Redefining \pageref on input line 74.
-LaTeX Info: Redefining \nameref on input line 74.
+LaTeX Info: Redefining \ref on input line 78.
+LaTeX Info: Redefining \pageref on input line 78.
+LaTeX Info: Redefining \nameref on input line 78.
 
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 81.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 77
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 81
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (3.36458pt too wide) in paragraph at lines 437--443
-\T1/ptm/m/n/10 ized by its 3D co-or-di-nate $\OT1/cmr/bx/n/10 c[] \OMS/cmsy/m/n
-/10 2 \U/msb/m/n/10 R[]$ \T1/ptm/m/n/10 and mi-croen-vi-ron-ment class $\OML/cm
-m/m/it/10 e[] \OMS/cmsy/m/n/10 2 f[]\OML/cmm/m/it/10 ; []; []; []\OMS/cmsy/m/n/
-10 g$\T1/ptm/m/n/10 ---
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+
+LaTeX Warning: Command \r invalid in math mode on input line 411.
+
+Missing character: There is no � in font cmr10!
+[4]
+
+LaTeX Warning: Command \r invalid in math mode on input line 435.
+
+Missing character: There is no � in font cmr10!
+[5] [6] [7]
+
+LaTeX Warning: Reference `tab:compat' on page 8 undefined on input line 784.
+
+
+LaTeX Warning: Reference `eq:esite' on page 8 undefined on input line 797.
+
+[8]
+! Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.926 \end{table}
+                 
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+[9]
+Overfull \hbox (1.18031pt too wide) in paragraph at lines 969--998
+\T1/ptm/m/n/10 ever, this ``im-prove-ment'' is a mi-rage: hard-fix also ex-hibi
+ts \T1/ptm/b/n/10 catas-trophic con-for-ma-tional strain \T1/ptm/m/n/10 (822.8 
+kcal/mol/atom,
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4
-73.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [5] [6] [7] [8]
-[9] [10] [11]
-<figures/fig1_KPE_trajectory.pdf, id=421, 859.0517pt x 711.04016pt>
-File: figures/fig1_KPE_trajectory.pdf Graphic file (type pdf)
-<use figures/fig1_KPE_trajectory.pdf>
-Package pdftex.def Info: figures/fig1_KPE_trajectory.pdf  used on input line 10
-65.
-(pdftex.def)             Requested size: 469.75502pt x 388.81657pt.
- [12]
-<figures/fig2_quadrant_boxplot.pdf, id=431, 1004.24133pt x 427.77516pt>
-File: figures/fig2_quadrant_boxplot.pdf Graphic file (type pdf)
-<use figures/fig2_quadrant_boxplot.pdf>
-Package pdftex.def Info: figures/fig2_quadrant_boxplot.pdf  used on input line 
-1089.
-(pdftex.def)             Requested size: 432.17375pt x 184.08986pt.
- [13 <./figures/fig1_KPE_trajectory.pdf>]
-<figures/fig3_a_hardfix.png, id=530, 578.16pt x 433.62pt>
+<figures/fig3_a_hardfix.png, id=325, 578.16pt x 433.62pt>
 File: figures/fig3_a_hardfix.png Graphic file (type png)
 <use figures/fig3_a_hardfix.png>
-Package pdftex.def Info: figures/fig3_a_hardfix.png  used on input line 1114.
+Package pdftex.def Info: figures/fig3_a_hardfix.png  used on input line 1024.
 (pdftex.def)             Requested size: 225.4804pt x 169.10449pt.
-<figures/fig3_b_kinematic.png, id=532, 578.16pt x 433.62pt>
+<figures/fig3_b_kinematic.png, id=327, 578.16pt x 433.62pt>
 File: figures/fig3_b_kinematic.png Graphic file (type png)
 <use figures/fig3_b_kinematic.png>
-Package pdftex.def Info: figures/fig3_b_kinematic.png  used on input line 1121.
+Package pdftex.def Info: figures/fig3_b_kinematic.png  used on input line 1031.
 
 (pdftex.def)             Requested size: 225.4804pt x 169.10449pt.
-<figures/fig3_c_crystal.png, id=533, 578.16pt x 433.62pt>
+<figures/fig3_c_crystal.png, id=328, 578.16pt x 433.62pt>
 File: figures/fig3_c_crystal.png Graphic file (type png)
 <use figures/fig3_c_crystal.png>
-Package pdftex.def Info: figures/fig3_c_crystal.png  used on input line 1128.
+Package pdftex.def Info: figures/fig3_c_crystal.png  used on input line 1038.
 (pdftex.def)             Requested size: 225.4804pt x 169.10449pt.
-<figures/fig3_combined.png, id=534, 578.16pt x 433.62pt>
+<figures/fig3_combined.png, id=329, 578.16pt x 433.62pt>
 File: figures/fig3_combined.png Graphic file (type png)
 <use figures/fig3_combined.png>
-Package pdftex.def Info: figures/fig3_combined.png  used on input line 1135.
+Package pdftex.def Info: figures/fig3_combined.png  used on input line 1045.
 (pdftex.def)             Requested size: 225.4804pt x 169.10449pt.
- [14 <./figures/fig2_quadrant_boxplot.pdf>] [15 <./figures/fig3_a_hardfix.png> 
-<./figures/fig3_b_kinematic.png> <./figures/fig3_c_crystal.png> <./figures/fig3
-_combined.png>]
-<figures/fig_ablation_heatmap.pdf, id=651, 986.0505pt x 362.39452pt>
-File: figures/fig_ablation_heatmap.pdf Graphic file (type pdf)
-<use figures/fig_ablation_heatmap.pdf>
-Package pdftex.def Info: figures/fig_ablation_heatmap.pdf  used on input line 1
-182.
-(pdftex.def)             Requested size: 399.29463pt x 146.74686pt.
+[10] [11 <./figures/fig3_a_hardfix.png> <./figures/fig3_b_kinematic.png> <./fig
+ures/fig3_c_crystal.png> <./figures/fig3_combined.png>]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
+096.
 
-[16 <./figures/fig_ablation_heatmap.pdf>]
-Overfull \hbox (4.8799pt too wide) in paragraph at lines 1299--1306
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+<figures/fig1_KPE_trajectory.pdf, id=347, 859.0517pt x 711.04016pt>
+File: figures/fig1_KPE_trajectory.pdf Graphic file (type pdf)
+<use figures/fig1_KPE_trajectory.pdf>
+Package pdftex.def Info: figures/fig1_KPE_trajectory.pdf  used on input line 11
+18.
+(pdftex.def)             Requested size: 469.75502pt x 388.81657pt.
+ [12] [13 <./figures/fig1_KPE_trajectory.pdf>] [14] [15]
+
+LaTeX Warning: Reference `app:pharm_compat' on page 16 undefined on input line 
+1415.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1466--1467
+[]|\T1/ptm/m/n/10 CoM ad-van-tage di-luted across
+ []
+
+
+Overfull \hbox (26.08574pt too wide) in paragraph at lines 1457--1469
+ [] 
+ []
+
+[16]
+
+LaTeX Warning: File `figures/fig_pharm_three_tier.pdf' not found on input line 
+1483.
+
+
+! Package pdftex.def Error: File `figures/fig_pharm_three_tier.pdf' not found: 
+using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1483 ...width]{figures/fig_pharm_three_tier.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[17] [18]
+Overfull \hbox (4.8799pt too wide) in paragraph at lines 1619--1626
 []\T1/ptm/b/n/10 Thermodynamic wa-ter clas-si-fi-ca-tion\T1/ptm/m/n/10 . Our ru
 le-based wa-ter clas-si-fi-ca-tion achieves 100% agree-ment with literature-
  []
 
 
-Overfull \hbox (10.04512pt too wide) in paragraph at lines 1299--1306
+Overfull \hbox (15.04512pt too wide) in paragraph at lines 1619--1626
 \T1/ptm/m/n/10 calibrated $\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 G$ \T1/ptm/m/n/1
-0 es-ti-mates (Ta-ble [][]5[][]). In-te-gra-tion with rig-or-ous explicit-solve
-nt cal-cu-la-tions (GIST via Am-ber/CPPTRAJ
+0 es-ti-mates (Ta-ble [][]12[][]). In-te-gra-tion with rig-or-ous explicit-solv
+ent cal-cu-la-tions (GIST via Am-ber/CPPTRAJ
  []
 
-[17] [18]
-Overfull \hbox (1.68028pt too wide) in paragraph at lines 1424--1438
+
+! LaTeX Error: Unicode character 排 (U+6392)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1641 ...ntire molecule into the van der Waals排
+                                                  斥半径
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character 斥 (U+65A5)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1641 ...re molecule into the van der Waals排斥
+                                                  半径
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character 半 (U+534A)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1641 ...molecule into the van der Waals排斥半
+                                                  径
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character 径 (U+5F84)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1641 ...ecule into the van der Waals排斥半径
+                                                  
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[19]
+Overfull \hbox (1.68028pt too wide) in paragraph at lines 1726--1741
 \T1/ptm/m/n/10 gen-er-ated molecules on DrugFlow, plus cross-validation on Tar-
 get-D-iff) demon-strates that kine-matic an-chor-ing achieves
  []
 
-
-Overfull \hbox (2.55692pt too wide) in paragraph at lines 1424--1438
-\T1/ptm/m/n/10 Specif-i-cally, we demon-strate (i) 31,468$\OMS/cmsy/m/n/10 ^^B$
- \T1/ptm/m/n/10 KPE sup-pres-sion ($\OML/cmm/m/it/10 ^^Z[] \OT1/cmr/m/n/10 = 0\
-OML/cmm/m/it/10 :\OT1/cmr/m/n/10 006%$ \T1/ptm/m/n/10 vs. 98.5% for naive hard-
-fix on DrugFlow),
- []
-
-<figures/fig_performance_heatmap.pdf, id=789, 982.40837pt x 650.85033pt>
+<figures/fig_performance_heatmap.pdf, id=515, 982.40837pt x 650.85033pt>
 File: figures/fig_performance_heatmap.pdf Graphic file (type pdf)
 <use figures/fig_performance_heatmap.pdf>
 Package pdftex.def Info: figures/fig_performance_heatmap.pdf  used on input lin
-e 1456.
+e 1759.
 (pdftex.def)             Requested size: 469.75502pt x 311.2228pt.
-[19]
-<figures/fig_tsne_chemical_space.pdf, id=795, 704.02708pt x 559.14836pt>
+[20]
+<figures/fig_tsne_chemical_space.pdf, id=522, 704.02708pt x 559.14836pt>
 File: figures/fig_tsne_chemical_space.pdf Graphic file (type pdf)
 <use figures/fig_tsne_chemical_space.pdf>
 Package pdftex.def Info: figures/fig_tsne_chemical_space.pdf  used on input lin
-e 1471.
+e 1774.
 (pdftex.def)             Requested size: 328.82707pt x 261.16164pt.
- [20 <./figures/fig_performance_heatmap.pdf>] [21 <./figures/fig_tsne_chemical_
-space.pdf>] (./main.bbl [22]) [23] (./main.aux)
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 56EFD1C75BF6A289CA8AF69834F78E2F;11290.
+ [21 <./figures/fig_performance_heatmap.pdf>]
+Overfull \hbox (20.21123pt too wide) in paragraph at lines 1811--1822
+\T1/ptm/m/n/10 (PDB-bind, 2001--2010 sub-set) us-ing RD-Kit's built-in chem-i-c
+al fea-ture de-tec-tion with the stan-dard \T1/pcr/m/n/10 BaseFeatures.fdef
+ []
+
+[22 <./figures/fig_tsne_chemical_space.pdf>]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1856 ....5 & $+$0.3 & $-$0.5 & $-$0.3 & $ 0.0  &
+                                                   $-$0.5 \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1857 ....0 & $+$0.3 & $-$0.5 & $-$0.3 & $ 0.0  &
+                                                   $-$0.5 \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+[23]
+
+LaTeX Warning: Command \r invalid in math mode on input line 1955.
+
+Missing character: There is no � in font cmr9!
+
+LaTeX Warning: Command \r invalid in math mode on input line 1963.
+
+Missing character: There is no � in font cmr10!
+[24]
+
+LaTeX Warning: Command \r invalid in math mode on input line 2075.
+
+Missing character: There is no � in font cmr10!
+[25] [26] (./main.bbl [27] [28]) [29] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: E10A2D473B06A13182D29C354B3DA89F;7492
+(rerunfilecheck)             After:  BF7F6DC6732FB4781CE64ACCAC29D58B;8443.
  ) 
 Here is how much of TeX's memory you used:
- 17799 strings out of 480171
- 330795 string characters out of 5894490
- 618260 words of memory out of 5000000
- 35326 multiletter control sequences out of 15000+600000
- 554436 words of font info for 130 fonts, out of 8000000 for 9000
+ 17903 strings out of 480171
+ 332592 string characters out of 5894490
+ 625466 words of memory out of 5000000
+ 35424 multiletter control sequences out of 15000+600000
+ 549255 words of font info for 128 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 71i,18n,79p,1133b,928s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy6.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a
-.pfb>
-Output written on main.pdf (23 pages, 4595167 bytes).
+ 71i,18n,79p,1480b,948s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{table.caption.21} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.17} has been referenced but does not 
+exist, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
+imes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pf
+b>
+Output written on main.pdf (29 pages, 4583990 bytes).
 PDF statistics:
- 1190 PDF objects out of 1200 (max. 8388607)
- 636 compressed objects within 7 object streams
- 153 named destinations out of 1000 (max. 500000)
- 406 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 996 PDF objects out of 1000 (max. 8388607)
+ 625 compressed objects within 7 object streams
+ 145 named destinations out of 1000 (max. 500000)
+ 276 words of extra memory for PDF output out of 10000 (max. 10000000)
 

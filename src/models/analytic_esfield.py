@@ -54,6 +54,9 @@ HEW_ENV_ORDER = [HEW_ENV_HYDROPHOBIC, HEW_ENV_POLAR_UNSATISFIED, HEW_ENV_MIXED, 
 # Heuristic compatibility matrix M(atom_type, hew_environment)
 # ---------------------------------------------------------------------------
 
+# ── DEPRECATED: Use guidance.latent_guidance.COMPAT_MATRIX instead ──
+# This matrix is kept for backward compatibility only.
+# The authoritative matrix matching paper Appendix Table 10 is in latent_guidance.py.
 _HEW_COMPATIBILITY_RAW: dict[str, dict[str, float]] = {
     HEW_ENV_HYDROPHOBIC: {
         "C_sp3": 1.0, "C_aromatic": 1.0,

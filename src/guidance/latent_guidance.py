@@ -88,10 +88,119 @@ HEW_ENV_TO_IDX: dict[str, int] = {e: i for i, e in enumerate(HEW_ENV_ORDER)}
 #   are heavily penalized.
 #
 #   Score range: +1.0 (strongly compatible) to -1.0 (strongly incompatible).
+#
+# Pharmacophore compatibility matrix:
+#   hbd (H-bond donor):          prefers N_donor, O_donor
+#   hba (H-bond acceptor):       prefers O_acceptor, N_acceptor
+#   hydrophobic:                 prefers C_sp3, C_aromatic, halogen
+#   aromatic:                    prefers C_aromatic
+#   pos_ion (positive ionizable):prefers N_donor (amine)
+#   neg_ion (negative ionizable):favours O_acceptor (carboxylate)
 # ---------------------------------------------------------------------------
 
+# ── Compatibility matrix — EXACT values from paper Appendix Table 10 ──
+#   Table 10 columns: Csp3, Carom, Ndon, Nacc, Odon, Oacc, S, Hal, P, Chg, Unk
+#   Odon and Oacc have identical values in all rows → both map to O_acceptor.
+#   B (boron) is not in Table 10 → set to 0.0 (neutral) across all environments.
 _COMPAT_RAW: dict[str, dict[str, float]] = {
     HEW_ENV_HYDROPHOBIC: {
+        "C_sp3": 1.0,
+        "C_aromatic": 1.0,
+        "N_donor": -0.8,
+        "N_acceptor": -0.8,
+        "O_acceptor": -0.8,   # Odon + Oacc (identical in Table 10)
+        "S": 0.3,
+        "P": -0.5,
+        "halogen": 1.0,
+        "charged": -1.0,
+        "unknown": -0.5,
+        "B": 0.0,             # not in Table 10
+    },
+    HEW_ENV_POLAR_UNSATISFIED: {
+        "C_sp3": -0.8,
+        "C_aromatic": -0.5,
+        "N_donor": 1.0,
+        "N_acceptor": 1.0,
+        "O_acceptor": 1.0,    # Odon + Oacc (identical in Table 10)
+        "S": -0.3,
+        "P": -0.3,
+        "halogen": -0.8,
+        "charged": -0.5,
+        "unknown": -0.5,
+        "B": 0.0,             # not in Table 10
+    },
+    HEW_ENV_MIXED: {
+        "C_sp3": 0.5,
+        "C_aromatic": 0.5,
+        "N_donor": 0.3,
+        "N_acceptor": 0.3,
+        "O_acceptor": 0.3,    # Odon + Oacc (identical in Table 10)
+        "S": -0.3,
+        "P": -0.3,
+        "halogen": 0.5,
+        "charged": -0.5,
+        "unknown": -0.5,
+        "B": 0.0,             # not in Table 10
+    },
+    HEW_ENV_BURIED: {
+        "C_sp3": 0.8,
+        "C_aromatic": 0.8,
+        "N_donor": -0.3,
+        "N_acceptor": -0.3,
+        "O_acceptor": -0.3,   # Odon + Oacc (identical in Table 10)
+        "S": 0.5,
+        "P": -0.3,
+        "halogen": 0.8,
+        "charged": -0.8,
+        "unknown": -0.5,
+        "B": 0.0,             # not in Table 10
+    },
+}
+
+# ── Pharmacophore compatibility matrix ─────────────────────────────────
+# 6 pharmacophore feature types × 11 atom types.
+# Reuses the same atom type vocabulary as HEW sites for drop-in
+# compatibility with SiteCompatibilityEnergy.
+
+PHARMACOPHORE_TYPE_ORDER = [
+    "hbd",          # H-bond donor feature
+    "hba",          # H-bond acceptor feature
+    "hydrophobic",  # hydrophobic feature
+    "aromatic",     # aromatic ring feature
+    "pos_ion",      # positive ionizable feature
+    "neg_ion",      # negative ionizable feature
+]
+
+PHARMACOPHORE_COMPAT_RAW: dict[str, dict[str, float]] = {
+    "hbd": {
+        "N_donor": 1.0,
+        "O_donor": 1.0,
+        "N_acceptor": 0.5,
+        "O_acceptor": -1.0,
+        "C_sp3": -0.5,
+        "C_aromatic": -0.5,
+        "S": 0.3,
+        "halogen": -0.5,
+        "P": -0.3,
+        "charged": -1.0,
+        "B": -0.3,
+        "unknown": -0.5,
+    },
+    "hba": {
+        "O_acceptor": 1.0,
+        "N_acceptor": 1.0,
+        "S": 0.3,
+        "N_donor": -1.0,
+        "O_donor": -1.0,
+        "C_sp3": -0.5,
+        "C_aromatic": -0.5,
+        "halogen": -0.5,
+        "P": -0.3,
+        "charged": -1.0,
+        "B": -0.3,
+        "unknown": -0.5,
+    },
+    "hydrophobic": {
         "C_sp3": 1.0,
         "C_aromatic": 1.0,
         "halogen": 1.0,
@@ -104,46 +213,64 @@ _COMPAT_RAW: dict[str, dict[str, float]] = {
         "B": -0.3,
         "unknown": -0.5,
     },
-    HEW_ENV_POLAR_UNSATISFIED: {
-        "O_acceptor": 1.0,
-        "N_donor": 1.0,
-        "N_acceptor": 1.0,
+    "aromatic": {
+        "C_aromatic": 1.0,
+        "C_sp3": 0.3,
+        "halogen": 0.3,
         "S": 0.3,
-        "C_sp3": -0.5,
-        "C_aromatic": -0.5,
-        "halogen": -0.5,
+        "N_acceptor": -0.5,
+        "N_donor": -0.5,
+        "O_acceptor": -0.5,
+        "O_donor": -0.5,
         "P": -0.3,
         "charged": -1.0,
         "B": -0.3,
         "unknown": -0.5,
     },
-    HEW_ENV_MIXED: {
-        "C_sp3": 0.5,
-        "C_aromatic": 0.5,
-        "O_acceptor": 0.5,
-        "N_donor": 0.5,
-        "N_acceptor": 0.5,
-        "S": 0.5,
-        "halogen": 0.5,
-        "P": 0.1,
-        "charged": -0.5,
-        "B": 0.1,
-        "unknown": 0.0,
-    },
-    HEW_ENV_BURIED: {
-        "C_sp3": 0.3,
-        "halogen": 0.5,
+    "pos_ion": {
+        "N_donor": 1.0,
+        "N_acceptor": 0.3,
+        "O_donor": 0.3,
+        "C_sp3": -0.5,
         "C_aromatic": -0.5,
-        "S": -0.3,
-        "O_acceptor": -1.0,
-        "N_donor": -1.0,
-        "N_acceptor": -1.0,
-        "P": -0.5,
-        "charged": -1.0,
+        "O_acceptor": -0.5,
+        "S": 0.3,
+        "halogen": -0.5,
+        "P": -0.3,
+        "charged": 0.0,
+        "B": -0.3,
+        "unknown": -0.5,
+    },
+    "neg_ion": {
+        "O_acceptor": 1.0,
+        "N_acceptor": 0.3,
+        "S": 0.3,
+        "C_sp3": -0.5,
+        "C_aromatic": -0.5,
+        "N_donor": -0.5,
+        "O_donor": -0.5,
+        "halogen": -0.5,
+        "P": -0.3,
+        "charged": 0.0,
         "B": -0.3,
         "unknown": -0.5,
     },
 }
+
+
+def _build_pharmacophore_compat_tensor() -> torch.Tensor:
+    """Build [6, 11] pharmacophore compatibility matrix."""
+    mat = torch.zeros(len(PHARMACOPHORE_TYPE_ORDER), N_ATOM_TYPES)
+    for env_idx, env_name in enumerate(PHARMACOPHORE_TYPE_ORDER):
+        raw = PHARMACOPHORE_COMPAT_RAW[env_name]
+        for type_name, score in raw.items():
+            if type_name in ATOM_TYPE_TO_IDX:
+                mat[env_idx, ATOM_TYPE_TO_IDX[type_name]] = score
+    return mat
+
+
+# Eagerly built at import time for use in PharmacophoreSiteCompatibilityEnergy
+PHARMACOPHORE_COMPAT_MATRIX: torch.Tensor = _build_pharmacophore_compat_tensor()
 
 
 def _build_compat_tensor() -> torch.Tensor:
@@ -233,6 +360,12 @@ class SiteCompatibilityEnergy:
     sigma_distance: float = 3.0
     """Gaussian kernel width in Angstrom.  Larger values create a wider
     attractive funnel; smaller values require precise placement."""
+
+    tau: float = 10.0
+    """Log-Sum-Exp temperature parameter for smoothing the max operation
+    over atoms.  Larger values make the energy focus on the single best
+    atom-site pair; smaller values average over all atoms.  Default 10
+    as specified in the paper formula (1)."""
 
     compatibility_matrix: torch.Tensor | None = None
     """[n_envs, n_atom_types] compatibility scores.  If None, uses the
@@ -345,13 +478,23 @@ class SiteCompatibilityEnergy:
         if self._site_confs is not None:
             gauss_weight = gauss_weight * self._site_confs[None, :]
 
-        # -- 5. Energy = -Σ_i Σ_j compat_ij * gauss(d_ij) -----------------
+        # -- 5. Energy with τ-temperature log-sum-exp ----------------------
         #
-        # Compatible atom near site:  compat > 0, gauss > 0 → energy < 0 (good)
-        # Incompatible atom near site: compat < 0, gauss > 0 → energy > 0 (bad)
+        # Per-atom score: s_i = Σ_j compat_ij * gauss(d_ij)
+        # E = -(1/τ) * log( Σ_i exp(τ * s_i) )
+        #
+        # This smooths the max operation over atoms: with τ=10, the
+        # energy is dominated by the best-matching atom-site pair(s),
+        # while still being differentiable.
+        #
+        # Compatible atom near site:  s_i > 0 → exp(τ·s_i) large → E < 0 (good)
+        # Incompatible atom near site: s_i < 0 → exp(τ·s_i) small → E ~ 0 (neutral)
         #
         pair_contributions = compat * gauss_weight  # [n_atoms, n_sites]
-        energy = -pair_contributions.sum()
+        per_atom_score = pair_contributions.sum(dim=-1)  # [n_atoms]
+        energy = -(1.0 / self.tau) * torch.logsumexp(
+            self.tau * per_atom_score, dim=0
+        )  # scalar
 
         return energy
 

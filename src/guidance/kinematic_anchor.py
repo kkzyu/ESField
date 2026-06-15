@@ -137,7 +137,7 @@ class KinematicAnchorGuidance:
         site_energy: SiteCompatibilityEnergy,
         total_steps: int = 200,
         *,
-        lambda_max: float = 0.5,
+        lambda_max: float = 1.0,
         profile: str = "quadratic",
         t_on: float = 0.5,
         grad_clip: float = 0.5,
@@ -235,6 +235,7 @@ class KinematicAnchorGuidance:
             lam = lam.item()
 
         # ── Apply pure translational correction to anchors ──
+        correction = torch.zeros(3, device=device)
         if lam > 0 and site_grad.norm() > 1e-8:
             correction = lam * site_grad  # [3] — same for ALL anchor atoms
             # Clamp correction for stability
@@ -406,7 +407,7 @@ def create_kinematic_callback(
     site_energy: SiteCompatibilityEnergy,
     total_steps: int = 200,
     *,
-    lambda_max: float = 0.5,
+    lambda_max: float = 1.0,
     profile: str = "quadratic",
     t_on: float = 0.5,
     grad_clip: float = 0.5,

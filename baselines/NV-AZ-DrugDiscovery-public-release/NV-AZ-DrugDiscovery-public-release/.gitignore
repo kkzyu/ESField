@@ -1,0 +1,41 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local editor/OS files
+.DS_Store
+.claude/
+.env
+.env.*
+.venv/
+venv/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Model weights and local checkpoints. Use download_checkpoints.py instead.
+edm/checkpoints/
+semlaflow/checkpoints/*.pt
+*.ckpt
+
+# Datasets and generated outputs
+edm/dataset/*
+!edm/dataset/pdbbind/
+!edm/dataset/pdbbind/5zcu/
+!edm/dataset/pdbbind/5zcu/*
+edm/dataset.old/
+semlaflow/cache/*
+!semlaflow/cache/atom_num_distr.npy
+!semlaflow/cache/pdbbind_test.npy
+semlaflow/results/
+generated_molecules/
+raw_mols/
+evaluation/
+paper_results/
+pdb_dir/

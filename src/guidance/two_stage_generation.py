@@ -80,7 +80,7 @@ class Phase1Config:
     attempts: int = 3
     """Number of retry attempts if Phase 1 fails to occupy any site."""
 
-    lambda_early: float = 0.5
+    lambda_early: float = 5.0
     """Guidance strength λ for Phase 1 (strong, to drive occupation)."""
 
     kts_alpha0: float = 0.01
@@ -118,6 +118,8 @@ class Phase2Config:
     anchor_fix_mode: str = "hard"
     """Anchor fixation strategy:
     - "hard": v7.1 default — hard-overwrite coordinates every step
+    - "hard_locked": ★ Fully locked — anchors removed before ODE,
+      re-inserted after. Zero KPE from anchors. Fair baseline.
     - "annealing": v7.1a — hard-fix for fix_fraction of steps, then
       harmonic restraint decaying to zero
     - "soft": harmonic restraint only (no hard-overwrite), k = restraint_force
@@ -149,10 +151,10 @@ class Phase2Config:
     """Decay schedule: "linear" or "exponential"."""
 
     # ── Kinematic parameters (used when anchor_fix_mode == "kinematic") ──
-    kinematic_lambda_max: float = 0.5
+    kinematic_lambda_max: float = 1.0
     """Maximum guidance strength λ_max for kinematic anchor guidance.
     Controls how strongly the anchor CoM is pulled toward HEW sites.
-    Higher = stronger attraction (0.1–2.0).  Default 0.5."""
+    Higher = stronger attraction (0.1–2.0).  Default 1.0."""
 
     kinematic_profile: str = "quadratic"
     """λ(t) decay profile: "quadratic", "constant", "late_onset", "linear".
@@ -779,6 +781,41 @@ class TwoStageGuideFn:
 
 
 # ---------------------------------------------------------------------------
+# merge_anchors_to_initial_molecule — prepare Phase 2 initial state from Phase 1
+# ---------------------------------------------------------------------------
+
+
+def merge_anchors_to_initial_molecule(
+    phase1_fragment_mol,
+    anchor_list: "AnchorAtoms",
+) -> dict[str, Any]:
+    """Prepare Phase 2 initial molecule from Phase 1 fragment and anchors.
+
+    The Phase 1 fragment (all atoms and bonds) becomes the seed for Phase 2.
+    Anchor atoms are a subset of the fragment that occupy HEW sites.
+
+    Args:
+        phase1_fragment_mol: RDKit Mol from Phase 1 (full fragment, all atoms+bonds)
+        anchor_list: AnchorAtoms identifying which fragment atoms are anchors
+
+    Returns:
+        dict with:
+          - "fragment_mol": the Phase 1 RDKit Mol (same as input)
+          - "anchor_positions": [n_anchors, 3] tensor
+          - "anchor_type_indices": [n_anchors] tensor
+          - "n_fragment_atoms": int
+          - "n_anchors": int
+    """
+    return {
+        "fragment_mol": phase1_fragment_mol,
+        "anchor_positions": anchor_list.positions.clone(),
+        "anchor_type_indices": anchor_list.type_indices.clone(),
+        "n_fragment_atoms": phase1_fragment_mol.GetNumAtoms() if phase1_fragment_mol is not None else 0,
+        "n_anchors": anchor_list.n_anchors,
+    }
+
+
+# ---------------------------------------------------------------------------
 # TwoStageGenerator — main orchestrator
 # ---------------------------------------------------------------------------
 
@@ -851,6 +888,10 @@ class TwoStageGenerator:
         self._phase1_log: list[dict] = []
         self._phase2_log: list[dict] = []
 
+        # Phase 1 fragment (stored when Phase 1 succeeds)
+        self._phase1_fragment_mol = None  # RDKit Mol from Phase 1
+        self._anchors: AnchorAtoms | None = None
+
     @property
     def n_hew_sites(self) -> int:
         return self._site_energy_p1.n_sites
@@ -884,6 +925,7 @@ class TwoStageGenerator:
 
         Returns:
             AnchorAtoms if successful, None if all attempts failed.
+            The fragment RDKit Mol is stored in self._phase1_fragment_mol.
         """
         cfg = self.config.phase1
         self._site_energy_p1.to(device)
@@ -963,6 +1005,7 @@ class TwoStageGenerator:
                                 f"best distance={diag['best_distance']:.2f} Å"
                             )
                         self._anchors = anchors
+                        self._phase1_fragment_mol = mol  # ★ store for merge_anchors_to_initial_molecule
                         return anchors
 
             if self.config.verbose:
@@ -1024,10 +1067,11 @@ class TwoStageGenerator:
 
         # ── Build anchor fixation callback ──
         post_step_callback = None
+        pre_step_callback = None
         anchor_fix_mode = getattr(cfg, "anchor_fix_mode", "hard")
 
         if anchor_fix_mode == "hard":
-            # v7.1 default: hard-overwrite every step
+            # v7.1 default: hard-overwrite every step (per-step reset)
             patch_drugflow_hardfix()
             from guidance.hard_fix import HardFixCallback
             post_step_callback = HardFixCallback(
@@ -1038,6 +1082,21 @@ class TwoStageGenerator:
                 fix_types=(cfg.type_bias_strength > 0),
                 verbose=self.config.verbose,
             )
+
+        elif anchor_fix_mode == "hard_locked":
+            # ★ Fully locked: anchors removed before ODE, re-inserted after.
+            # Zero KPE from anchor atoms — fair baseline for comparison.
+            patch_drugflow_hardfix()
+            patch_drugflow_fully_locked()  # adds pre_step_callback support
+            from guidance.hard_fix import FullyLockedAnchorCallback
+            post_step_callback = FullyLockedAnchorCallback(
+                anchor_indices=anchor_atom_indices,
+                anchor_coords=anchors.positions.clone(),
+                anchor_h=anchors.type_probs.clone() if cfg.type_bias_strength > 0 else None,
+                verbose=self.config.verbose,
+            )
+            # Register as both pre_step and post_step callback
+            pre_step_callback = post_step_callback
 
         elif anchor_fix_mode == "annealing":
             # v7.1a: hard-fix → harmonic decay
@@ -1083,7 +1142,7 @@ class TwoStageGenerator:
         else:
             raise ValueError(
                 f"Unknown anchor_fix_mode: {anchor_fix_mode!r}. "
-                f"Choose 'hard', 'annealing', 'soft', or 'kinematic'."
+                f"Choose 'hard', 'hard_locked', 'annealing', 'soft', or 'kinematic'."
             )
 
         # ★ Ensure post_step_callback is forwarded by model.sample() → simulate()
@@ -1095,6 +1154,7 @@ class TwoStageGenerator:
         if self.config.verbose:
             mode_desc = {
                 "hard": "hard-fix every step",
+                "hard_locked": "★ fully locked (anchors removed before ODE, zero KPE)",
                 "annealing": f"hard-fix ({getattr(cfg, 'annealing_fix_fraction', 0.7):.0%}) "
                              f"→ harmonic decay ({getattr(cfg, 'annealing_restraint_start', 10.0):.1f}"
                              f" → {getattr(cfg, 'annealing_restraint_end', 0.0):.1f})",
@@ -1110,14 +1170,17 @@ class TwoStageGenerator:
 
         t0 = time.time()
         with torch.no_grad():
-            rdmols, trajectories, _ = self.model.sample(
-                protein_data,
+            sample_kwargs = dict(
+                protein_data=protein_data,
                 n_samples=n_samples,
                 timesteps=timesteps,
                 num_nodes=full_mol_size,
                 guide_log_prob=guide_fn if cfg.lambda_late > 0 else None,
                 post_step_callback=post_step_callback,
             )
+            if pre_step_callback is not None:
+                sample_kwargs["pre_step_callback"] = pre_step_callback
+            rdmols, trajectories, _ = self.model.sample(**sample_kwargs)
         elapsed = time.time() - t0
 
         # Log
@@ -1193,14 +1256,40 @@ class TwoStageGenerator:
             device=device,
         )
 
+        generation_mode = "two_stage"  # default
+
         if anchors is None:
+            # ★ Degradation to single-stage KAG (no anchors)
+            if self.config.verbose:
+                print("  Phase 1 FAILED: degrading to single-stage KAG "
+                      "(CoM projection, no anchors).")
+            generation_mode = "single_stage_degraded"
+            # Create a dummy AnchorAtoms with zero anchors
+            anchors = AnchorAtoms(
+                positions=torch.zeros(0, 3, device=device),
+                type_indices=torch.zeros(0, dtype=torch.long, device=device),
+                type_probs=torch.zeros(0, N_ATOM_TYPES, device=device),
+                occupied_sites=[],
+                compat_scores=[],
+                distances=[],
+            )
+            # Single-stage degradation: skip two-stage pipeline
+            # Return immediately — caller should handle via full gradient fallback
             return {
                 "success": False,
+                "generation_mode": "single_stage_degraded",
                 "anchors": None,
                 "molecules": None,
                 "phase1_log": self._phase1_log,
                 "phase2_log": [],
             }
+        else:
+            # Phase 1 succeeded — prepare initial molecule from fragment
+            fragment_mol = self._phase1_fragment_mol
+            if fragment_mol is not None and self.config.verbose:
+                init_info = merge_anchors_to_initial_molecule(fragment_mol, anchors)
+                print(f"  Phase 2 initial state: {init_info['n_fragment_atoms']} "
+                      f"fragment atoms, {init_info['n_anchors']} anchors")
 
         # Phase 2
         molecules = self.phase2_connect(
@@ -1215,6 +1304,7 @@ class TwoStageGenerator:
 
         return {
             "success": True,
+            "generation_mode": generation_mode,
             "anchors": anchors,
             "molecules": molecules,
             "phase1_log": self._phase1_log,

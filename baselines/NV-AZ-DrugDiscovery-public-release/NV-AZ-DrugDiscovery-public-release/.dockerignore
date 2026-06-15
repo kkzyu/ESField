@@ -1,0 +1,28 @@
+.git
+.gitignore
+.gitattributes
+.claude
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+
+# Model weights (fetch from Hugging Face Hub instead)
+edm/checkpoints/*.ckpt
+semlaflow/checkpoints/*.pt
+
+# Datasets
+edm/dataset
+edm/dataset.old
+semlaflow/cache
+
+# Generated outputs
+generated_molecules
+raw_mols
+evaluation
+
+# Build artifacts
+build
+dist
+*.egg-info

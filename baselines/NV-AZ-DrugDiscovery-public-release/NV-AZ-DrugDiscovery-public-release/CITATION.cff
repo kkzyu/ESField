@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the article below."
+title: "NV-AZ-DrugDiscovery"
+type: software
+authors:
+  - family-names: Lai
+    given-names: Helen
+  - family-names: Wang
+    given-names: Tingyu
+  - family-names: Sirelkhatim
+    given-names: Hassan
+  - family-names: Eaton
+    given-names: Joe
+  - family-names: Huang
+    given-names: Howard
+  - family-names: Rees
+    given-names: Brad
+  - family-names: Engkvist
+    given-names: Ola
+  - family-names: Janet
+    given-names: Jon Paul
+  - family-names: Wang
+    given-names: Xiaoyun
+  - family-names: Tibo
+    given-names: Alessandro
+repository-code: "https://github.com/wangxiaoyunNV/NV-AZ-DrugDiscovery"
+preferred-citation:
+  type: article
+  title: "Improving protein-ligand complex generation with force field guidance"
+  authors:
+    - family-names: Lai
+      given-names: Helen
+    - family-names: Wang
+      given-names: Tingyu
+    - family-names: Sirelkhatim
+      given-names: Hassan
+    - family-names: Eaton
+      given-names: Joe
+    - family-names: Huang
+      given-names: Howard
+    - family-names: Rees
+      given-names: Brad
+    - family-names: Engkvist
+      given-names: Ola
+    - family-names: Janet
+      given-names: Jon Paul
+    - family-names: Wang
+      given-names: Xiaoyun
+    - family-names: Tibo
+      given-names: Alessandro
+  journal: "Journal of Cheminformatics"
+  volume: 18
+  pages: "55"
+  year: 2026
+  date-published: 2026-05-02
+  doi: "10.1186/s13321-026-01198-2"
+  url: "https://doi.org/10.1186/s13321-026-01198-2"

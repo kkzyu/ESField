@@ -32,26 +32,6 @@ Francesca Spyrakis, Mostafa~H. Ahmed, Alexander~S. Bayden, Pietro Cozzini,
   resource for drug discovery.
 \newblock {\em Journal of Medicinal Chemistry}, 60(16):6781--6827, 2017.
 
-\bibitem{nguyen2012gist}
-Crystal~N. Nguyen, Tom~K. Young, and Michael~K. Gilson.
-\newblock Grid inhomogeneous solvation theory: {H}ydration structure and
-  thermodynamics of the miniature receptor cucurbit[7]uril.
-\newblock {\em Journal of Chemical Physics}, 137(4):044101, 2012.
-
-\bibitem{ross2012gcmc}
-Gregory~A. Ross, Garrett~M. Morris, and Philip~C. Biggin.
-\newblock Rapid and accurate prediction and scoring of water molecules in
-  protein binding sites.
-\newblock {\em PLoS ONE}, 7(3):e32036, 2012.
-
-\bibitem{luchko2010rism}
-Tyler Luchko, Sergey Gusarov, Daniel~R. Roe, Carlos Simmerling, David~A. Case,
-  Jack Tuszynski, and Andriy Kovalenko.
-\newblock Three-dimensional molecular theory of solvation coupled with
-  molecular dynamics in {Amber}.
-\newblock {\em Journal of Chemical Theory and Computation}, 6(3):607--624,
-  2010.
-
 \bibitem{guan2023targetdiff}
 Jiaqi Guan, Wen Zhou, Jian Peng, and Jianzhu Ma.
 \newblock 3{D} equivariant diffusion for target-aware molecule generation and
@@ -87,22 +67,16 @@ Helen~M. Berman, John Westbrook, Zukang Feng, Gary Gilliland, T.~N. Bhat, Helge
 \newblock The {Protein Data Bank}.
 \newblock {\em Nucleic Acids Research}, 28(1):235--242, 2000.
 
+\bibitem{griesbacher2026ebmol}
+Christoph Griesbacher, Andreas Habring, Lukas Bogensperger, and Thomas Pock.
+\newblock Generating physically consistent molecules with energy-based models.
+\newblock {\em arXiv preprint arXiv:2605.18381}, 2026.
+
 \bibitem{esfield2026}
 {ESField Contributors}.
 \newblock {ESField}: Physical opportunity site utilization as a missing
   dimension in structure-based 3{D} molecular generation.
 \newblock {\em Technical Report}, 2026.
-
-\bibitem{esfield2026v6}
-{ESField Contributors}.
-\newblock {ESField v6-D.2}: Analytic field-based guidance for {HEW} site
-  displacement---a {NO-GO} diagnosis.
-\newblock {\em Technical Report}, 2026.
-
-\bibitem{griesbacher2026ebmol}
-Christoph Griesbacher, Andreas Habring, Lukas Bogensperger, and Thomas Pock.
-\newblock Generating physically consistent molecules with energy-based models.
-\newblock {\em arXiv preprint arXiv:2605.18381}, 2026.
 
 \bibitem{li2026kpe}
 Zhan Li, Han Hu, Shao~Heng Lim, Xiaodong Li, Fei Gao, Enmao Diao, Ziming Ding,
@@ -110,10 +84,23 @@ Zhan Li, Han Hu, Shao~Heng Lim, Xiaodong Li, Fei Gao, Enmao Diao, Ziming Ding,
 \newblock A kinetic-energy perspective of flow matching.
 \newblock {\em arXiv preprint arXiv:2602.07928}, 2026.
 
-\bibitem{jin2018jtvae}
-Wengong Jin, Regina Barzilay, and Tommi Jaakkola.
-\newblock Junction tree variational autoencoder for molecular graph generation.
-\newblock {\em International Conference on Machine Learning (ICML)}, 2018.
+\bibitem{nguyen2012gist}
+Crystal~N. Nguyen, Tom~K. Young, and Michael~K. Gilson.
+\newblock Grid inhomogeneous solvation theory: {H}ydration structure and
+  thermodynamics of the miniature receptor cucurbit[7]uril.
+\newblock {\em Journal of Chemical Physics}, 137(4):044101, 2012.
+
+\bibitem{ross2012gcmc}
+Gregory~A. Ross, Garrett~M. Morris, and Philip~C. Biggin.
+\newblock Rapid and accurate prediction and scoring of water molecules in
+  protein binding sites.
+\newblock {\em PLoS ONE}, 7(3):e32036, 2012.
+
+\bibitem{wang2015water}
+Lingle Wang, Bruce~J. Berne, and Richard~A. Friesner.
+\newblock Ligand binding to protein-binding pockets with wet and dry regions.
+\newblock {\em Proceedings of the National Academy of Sciences USA},
+  108(4):1326--1330, 2011.
 
 \bibitem{dhariwal2021classifier}
 Prafulla Dhariwal and Alex Nichol.
@@ -147,12 +134,6 @@ H.~Y.~Isaac Lam, Samuel~P. Ojeda, Michaela Brezinova, Johannes Hanke, X.~E.
   diffusion models.
 \newblock {\em bioRxiv}, 2026.
 
-\bibitem{wang2015water}
-Lingle Wang, Bruce~J. Berne, and Richard~A. Friesner.
-\newblock Ligand binding to protein-binding pockets with wet and dry regions.
-\newblock {\em Proceedings of the National Academy of Sciences USA},
-  108(4):1326--1330, 2011.
-
 \bibitem{halgren1996mmff94}
 Thomas~A. Halgren.
 \newblock {Merck Molecular Force Field}. {I}. {B}asis, form, scope,
@@ -179,12 +160,6 @@ G.~Richard Bickerton, Gaia~V. Paolini, J{\'e}r{\'e}my Besnard, Sorel Muresan,
 \newblock Quantifying the chemical beauty of drugs.
 \newblock {\em Nature Chemistry}, 4:90--98, 2012.
 
-\bibitem{friedman2023vendi}
-Dan Friedman and Adji~Bousso Dieng.
-\newblock The {Vendi Score}: {A} diversity evaluation metric for machine
-  learning.
-\newblock {\em arXiv preprint arXiv:2210.02410}, 2023.
-
 \bibitem{wilcoxon1945}
 Frank Wilcoxon.
 \newblock Individual comparisons by ranking methods.
@@ -195,11 +170,16 @@ Norman Cliff.
 \newblock Dominance statistics: {O}rdinal analyses to answer ordinal questions.
 \newblock {\em Psychological Bulletin}, 114(3):494--509, 1993.
 
-\bibitem{romano2006}
-Jeanine Romano, Jeffrey~D. Kromrey, Jesse Coraggio, and Jeff Skowronek.
-\newblock Appropriate statistics for ordinal level data: {S}hould we really be
-  using $t$-test and {C}ohen's $d$ for evaluating group differences?
-\newblock In {\em Annual Meeting of the Florida Association of Institutional
-  Research}, 2006.
+\bibitem{ertl2009}
+Peter Ertl and Ansgar Schuffenhauer.
+\newblock Estimation of synthetic accessibility score of drug-like molecules
+  based on molecular complexity and fragment contributions.
+\newblock {\em Journal of Cheminformatics}, 1(1):8, 2009.
+
+\bibitem{friedman2023vendi}
+Dan Friedman and Adji~Bousso Dieng.
+\newblock The {Vendi Score}: {A} diversity evaluation metric for machine
+  learning.
+\newblock {\em arXiv preprint arXiv:2210.02410}, 2023.
 
 \end{thebibliography}

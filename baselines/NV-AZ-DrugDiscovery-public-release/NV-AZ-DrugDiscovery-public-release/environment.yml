@@ -1,0 +1,30 @@
+name: edm
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  # Chemistry / geometry
+  - openbabel
+  - rdkit>=2023.0
+  # Scientific stack
+  - numpy>=1.24
+  - scipy>=1.10
+  - pandas
+  - matplotlib
+  - seaborn
+  - pillow
+  - natsort
+  - tqdm
+  # Deep learning
+  - pytorch>=2.3
+  - pytorch-cuda=12.1
+  - pip:
+      - black>=24.0
+      - func_timeout==4.3.5
+      - prolif
+      - huggingface_hub>=0.24
+      - ruff>=0.6

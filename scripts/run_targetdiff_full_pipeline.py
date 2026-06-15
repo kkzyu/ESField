@@ -72,6 +72,9 @@ POCKET_CONFIG = {
     "3mfw": {"year": "2001-2010", "n_hew": 7, "ref_ligand_atoms": 26},
     "6o4x": {"year": "2011-2019", "n_hew": 6, "ref_ligand_atoms": 22},
     "2gni": {"year": "2001-2010", "n_hew": 3, "ref_ligand_atoms": 20},
+    "2jke": {"year": "2001-2010", "n_hew": 4, "ref_ligand_atoms": 24},
+    "2gqn": {"year": "2001-2010", "n_hew": 7, "ref_ligand_atoms": 18},
+    "6phx": {"year": "2011-2019", "n_hew": 5, "ref_ligand_atoms": 21},
 }
 
 TD_CKPT = "/root/autodl-tmp/checkpoints/TargetDiff/pretrained_diffusion.pt"
@@ -363,7 +366,7 @@ def compute_direct_occ(mols_data, site_map, threshold=2.5):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--pocket", required=True, choices=["3mfw", "6o4x", "2gni"])
+    parser.add_argument("--pocket", required=True, choices=POCKET_CONFIG.keys())
     parser.add_argument("--mode", default="all",
                         choices=["unguided", "hard_fix", "kinematic", "all"])
     parser.add_argument("--n-samples", type=int, default=50)
